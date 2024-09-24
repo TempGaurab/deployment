@@ -36,7 +36,7 @@ def set_custom_style():
             color: var(--text-color);
         }
         p {
-            color: var(--text-color);
+            color: #e28506
             font-size: 1.2rem;
         }
         .course-selector {
