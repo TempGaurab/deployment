@@ -10,12 +10,23 @@ def generate_graph(data):
     for course, prerequisites in data.items():
         G.add_edges_from((prereq, course) for prereq in prerequisites)
 
+    # Assign a 'layer' attribute to each node based on the number of prerequisites
+    for course, prerequisites in data.items():
+        G.nodes[course]['subset'] = len(prerequisites)
+        for prereq in prerequisites:
+            G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
+
     # Draw the graph
     plt.figure(figsize=(10, 8))
-    pos = nx.planar_layout(G)
+    
+    # Generate the multipartite layout with the top-to-bottom orientation
+    pos = nx.multipartite_layout(G, subset_key='subset')
+    
+    # Adjust the positions to flip the graph to a top-to-bottom layout
+    pos = {node: (-x, y) for node, (x, y) in pos.items()}
+
     nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=3000, 
             font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
-
     # Save the figure to a BytesIO object
     img = BytesIO()
     plt.savefig(img, format='png')
