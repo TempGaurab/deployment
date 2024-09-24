@@ -46,7 +46,7 @@ def set_custom_style():
             text-align: center;
         }
         .submit-button, .clear-button {
-            background-color: var(--secondary-color);
+            background-color: black;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
