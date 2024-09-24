@@ -8,12 +8,20 @@ def set_custom_style():
         """
         <style>
         :root {
-            --primary-color: #FFFFFF;
-            --secondary-color: #000000;
-            --text-color: #333333;
-            --background-color: #FFFFFF;
-            --button-bg-color: #000000;
-            --button-text-color: #FFFFFF;
+            --primary-color: #007BFF;
+            --secondary-color: #6C757D;
+            --background-color: var(--primary-color);
+            --text-color: var(--secondary-color);
+            --button-bg-color: var(--secondary-color);
+            --button-text-color: var(--primary-color);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: var(--secondary-color);
+                --text-color: var(--primary-color);
+                --button-bg-color: var(--primary-color);
+                --button-text-color: var(--secondary-color);
+            }
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -21,22 +29,26 @@ def set_custom_style():
             color: var(--text-color);
         }
         .header {
-            background-color: var(--primary-color);
+            background-color: var(--background-color);
             color: var(--text-color);
             padding: 2rem 0;
             text-align: center;
             margin-bottom: 2rem;
-            border-bottom: 1px solid #EEEEEE;
+            border-bottom: 1px solid var(--text-color);
         }
         h1 {
             font-size: 4rem;
+            color: var(--text-color);
+        }
+        h3 {
+            color: var(--text-color);
         }
         p {
-            color: var(--primary-color:);
+            color: var(--text-color);
             font-size: 1.2rem;
         }
         .course-selector {
-            background-color: var(--primary-color);
+            background-color: var(--background-color);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -54,21 +66,27 @@ def set_custom_style():
             transition: background-color 0.3s;
         }
         .stButton > button:hover {
-            background-color: #333333;
+            opacity: 0.8;
         }
         .footer {
             text-align: center;
             color: var(--text-color);
             padding: 1.5rem;
-            background-color: var(--primary-color);
+            background-color: var(--background-color);
             margin-top: 2rem;
-            border-top: 1px solid #EEEEEE;
+            border-top: 1px solid var(--text-color);
         }
         .footer img {
             width: 24px;
             height: 24px;
             vertical-align: middle;
             margin: 0 5px;
+            filter: invert(1);
+        }
+        @media (prefers-color-scheme: dark) {
+            .footer img {
+                filter: invert(0);
+            }
         }
         </style>
         """,
@@ -110,7 +128,6 @@ def buttons():
         if st.button('Clear', key="clear", help="Click to clear the input"):
             st.session_state['selected_course'] = ""
 
-
 def footer():
     st.markdown(
         """
@@ -139,6 +156,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
