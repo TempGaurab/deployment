@@ -11,8 +11,6 @@ def generate_graph(data):
     for course, prerequisites in data.items():
         if prerequisites:
             G.add_edges_from((prereq, course) for prereq in prerequisites)
-        else:
-            G.add_node(course)
 
     # Assign a 'layer' attribute to each node based on the number of prerequisites
     for course, prerequisites in data.items():
