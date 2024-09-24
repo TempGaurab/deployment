@@ -10,13 +10,15 @@ def generate_graph(data):
     for course, prerequisites in data.items():
         for prereq in prerequisites:
             G.add_edge(prereq, course)
-
+    # Print the contents of G (edges)
+    edges = list(G.edges())
+    G = nx.DiGraph()
+    G.add_edges_from(edges)
     # Draw the graph
     plt.figure(figsize=(10, 8))
-    pos = nx.spring_layout(G)  # position layout for nodes
-    nx.draw(G, pos, with_labels=True, node_size=2000, node_color='lightblue', font_size=10, font_weight='bold', arrowsize=20)
-    plt.title("Course Prerequisites Graph")
-
+    pos = nx.planar_layout(G)
+    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=3000, 
+        font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
     # Save the figure to a BytesIO object
     img = BytesIO()
     plt.savefig(img, format='png')
