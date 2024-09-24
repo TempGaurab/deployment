@@ -18,19 +18,14 @@ def generate_graph(data):
             G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
 
     # Determine the main node (the first course in the data dictionary)
-    main_node = list(data.keys())[0]
-
-    # Compute the shortest path length from the main node to every other node
-    depth = nx.single_source_shortest_path_length(G, main_node)
-
-    # Normalize the depth values for color scaling
-    max_depth = max(depth.values())
-    
-    # Create a color map ranging from dark to light blue
-    cmap = LinearSegmentedColormap.from_list("blues_gradient", ["#003366", "#6699CC", "#99CCFF"])
-    
-    # Assign colors based on the depth of each node
-    node_colors = [cmap(depth[node] / max_depth) for node in G.nodes]
+    keys = list(data.keys())
+    main_node = keys[0] if len(keys) > 0 else ""
+    second_node = keys[1] if len(keys) > 1 else ""
+    third_node = keys[2] if len(keys) > 1 else ""
+    fourth_node = keys[3] if len(keys) > 1 else ""
+    fifth = keys[4] if len(keys) > 1 else ""
+    sixth = keys[5] if len(keys) > 1 else ""
+    seventh = keys[6] if len(keys) > 1 else ""
 
     # Draw the graph
     plt.figure(figsize=(10, 8))
@@ -40,6 +35,9 @@ def generate_graph(data):
     
     # Adjust the positions to flip the graph to a top-to-bottom layout
     pos = {node: (-x, y) for node, (x, y) in pos.items()}
+
+    # Set node colors: red for the main node, lightblue for others
+    node_colors = ['darkblue' if node == main_node else 'lightblue' for node in G.nodes]
 
     nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=3000, 
             font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
