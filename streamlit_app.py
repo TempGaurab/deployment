@@ -117,8 +117,7 @@ def buttons():
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
-                course_details = algorithm.final(st.session_state['selected_course'])
-                course_title = algorithm.get_title(st.session_state['selected_course'])
+                course_title, course_details = algorithm.final(st.session_state['selected_course'])
                 graphs = graph.generate_graph(course_details)
                 st.write(f"###  {st.session_state['selected_course'].upper()}: {course_title}")
                 # Increase the image size by specifying width
