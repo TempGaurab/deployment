@@ -27,6 +27,10 @@ def set_custom_style():
         h1 {
             font-size: 4rem;
         }
+        p{
+        color: var(--text-color);
+        font-size: 1.2rem;
+        }
         .course-selector {
             background-color: white;
             padding: 2rem;
