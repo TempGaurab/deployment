@@ -62,9 +62,9 @@ def set_custom_style():
         }
         .footer {
             text-align: center;
-            color: var(--primary-color);
+            color: var(--text-color);
             padding: 1.5rem;
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             margin-top: 2rem;
             border-top: 1px solid #EEEEEE;
         }
