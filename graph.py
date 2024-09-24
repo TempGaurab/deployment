@@ -7,18 +7,20 @@ def generate_graph(data):
     G = nx.DiGraph()
     main_node = keys[0] if len(keys) > 0 else ""
     keys = list(data.keys())
-    if len(keys) == 1:
-        G.add_node(main_node)
-    else:
-        # Add edges directly from the data dictionary
-        for course, prerequisites in data.items():
+    # Add edges directly from the data dictionary
+    for course, prerequisites in data.items():
+        if prerequisites:
             G.add_edges_from((prereq, course) for prereq in prerequisites)
+        else:
+            G.add_node(course)
 
-        # Assign a 'layer' attribute to each node based on the number of prerequisites
-        for course, prerequisites in data.items():
-            G.nodes[course]['subset'] = len(prerequisites)
-            for prereq in prerequisites:
-                G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
+    # Assign a 'layer' attribute to each node based on the number of prerequisites
+    for course, prerequisites in data.items():
+        G.nodes[course]['subset'] = len(prerequisites)
+        for prereq in prerequisites:
+            G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
+
+    keys = list(data.keys())
     
 
     # Draw the graph
