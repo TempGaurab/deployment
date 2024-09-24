@@ -12,6 +12,8 @@ def set_custom_style():
             --secondary-color: #FF6F61;
             --text-color: #333333;
             --background-color: #FFFFFF;
+            --button-bg-color: #000000;
+            --button-text-color: #FFFFFF;
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -45,9 +47,9 @@ def set_custom_style():
             margin-bottom: 2rem;
             text-align: center;
         }
-        .submit-button, .clear-button {
-            background-color: white;
-            color: black;
+        .stButton > button {
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
@@ -55,8 +57,8 @@ def set_custom_style():
             font-size: 1rem;
             transition: background-color 0.3s;
         }
-        .submit-button:hover, .clear-button:hover {
-            background-color: #E74C3C;
+        .stButton > button:hover {
+            background-color: #333333;
         }
         .footer {
             text-align: center;
@@ -112,6 +114,7 @@ def buttons():
         if st.button('Clear', key="clear", help="Click to clear the input"):
             st.session_state['selected_course'] = ""
 
+
 def footer():
     st.markdown(
         """
@@ -140,3 +143,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
