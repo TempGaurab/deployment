@@ -1,6 +1,5 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
 from io import BytesIO
 
 def generate_graph(data):
@@ -17,16 +16,6 @@ def generate_graph(data):
         for prereq in prerequisites:
             G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
 
-    # Determine the main node (the first course in the data dictionary)
-    keys = list(data.keys())
-    main_node = keys[0] if len(keys) > 0 else ""
-    second_node = keys[1] if len(keys) > 1 else ""
-    third_node = keys[2] if len(keys) > 1 else ""
-    fourth_node = keys[3] if len(keys) > 1 else ""
-    fifth = keys[4] if len(keys) > 1 else ""
-    sixth = keys[5] if len(keys) > 1 else ""
-    seventh = keys[6] if len(keys) > 1 else ""
-
     # Draw the graph
     plt.figure(figsize=(10, 8))
     
@@ -36,12 +25,8 @@ def generate_graph(data):
     # Adjust the positions to flip the graph to a top-to-bottom layout
     pos = {node: (-x, y) for node, (x, y) in pos.items()}
 
-    # Set node colors: red for the main node, lightblue for others
-    node_colors = ['darkblue' if node == main_node else 'lightblue' for node in G.nodes]
-
-    nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=3000, 
+    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=3000, 
             font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
-    
     # Save the figure to a BytesIO object
     img = BytesIO()
     plt.savefig(img, format='png')
