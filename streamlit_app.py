@@ -1,7 +1,6 @@
 import streamlit as st
 import algorithm
 import graph
-from PIL import BytesIO
 
 # Custom CSS to style the app
 def set_custom_style():
