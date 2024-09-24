@@ -71,8 +71,8 @@ def final(selected_course):
         data = json.load(f)
     # Validate input
     if course_code_exists(user_input, data):
-        output = format_prerequisites(main(user_input, data))
         title = get_title(user_input,data)
+        output = format_prerequisites(main(user_input, data))
         return title,output
     else:
         return("Course code not found. Please enter a valid course code.")
