@@ -21,7 +21,7 @@ def set_custom_style():
             color: var(--text-color);
         }
         .header {
-            background-color: var(--primary-color);
+            background-color: var(--background-color);
             padding: 2rem 0;
             text-align: center;
             color: var(--text-color);
