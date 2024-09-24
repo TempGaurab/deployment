@@ -1,8 +1,7 @@
 import streamlit as st
 import algorithm
 import graph
-from PIL import Image
-from io import BytesIO
+from PIL import BytesIO
 
 # Custom CSS to style the app
 def set_custom_style():
@@ -128,9 +127,7 @@ def buttons():
                 else:
                     graphs = graph.generate_graph(course_details)
                     st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
-                    img = Image.open(graphs)
-                    st.write(f'<img src="data:image/png;base64,{img.tobytes().decode()}" class="zoomable-image" style="max-width: 100%;">', unsafe_allow_html=True)
-
+                    st.image(graphs, use_column_width="auto", output_format="JPEG")
             else:
                 st.write("Please enter a course name.")
     
