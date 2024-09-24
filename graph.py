@@ -21,7 +21,7 @@ def generate_graph(data):
 
     # Draw the graph
     plt.figure(figsize=(10, 8))
-    node_colors = ['orange' if node == main_node else '#E4B64D' if node in G.predecessors(main_node) else '#C8C799' if node in G.predecessors(G.predecessors(main_node)) else '#add8e6' for node in G.nodes]
+    node_colors = ['orange' if node == main_node else '#E4B64D' if node in G.predecessors(main_node) else '#add8e6' for node in G.nodes]
 
     # Generate the multipartite layout with the top-to-bottom orientation
     pos = nx.multipartite_layout(G, subset_key='subset', align='horizontal')
