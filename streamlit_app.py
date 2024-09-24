@@ -7,11 +7,11 @@ def set_custom_style():
         """
         <style>
         :root {
-            --primary-color: #861f41;
-            --secondary-color: #df4a29;
-            --text-color: #333;
-            --background-color: #f4f4f4;
-        }
+            --primary-color: #5A2D6D; /* A modern, rich purple */
+            --secondary-color: #FF6F61; /* A vibrant coral for accents */
+            --text-color: #4A4A4A; /* A darker gray for improved readability */
+            --background-color: #F9F9F9; /* A soft off-white for a clean look */
+}
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--background-color);
