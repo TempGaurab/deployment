@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from io import BytesIO
 
 def generate_graph(data):
     # Initialize a directed graph
@@ -15,4 +16,10 @@ def generate_graph(data):
     pos = nx.spring_layout(G)  # position layout for nodes
     nx.draw(G, pos, with_labels=True, node_size=2000, node_color='lightblue', font_size=10, font_weight='bold', arrowsize=20)
     plt.title("Course Prerequisites Graph")
-    plt.show()
+
+    # Save the figure to a BytesIO object
+    img = BytesIO()
+    plt.savefig(img, format='png')
+    plt.close()  # Close the plot to free memory
+    img.seek(0)  # Move to the beginning of the BytesIO object
+    return img
