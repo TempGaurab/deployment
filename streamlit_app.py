@@ -22,7 +22,7 @@ def set_custom_style():
         }
         .header {
             background-color: var(--primary-color);
-            color: var(--secondary-color);
+            color: var(--text-color);
             padding: 2rem 0;
             text-align: center;
             margin-bottom: 2rem;
