@@ -24,7 +24,7 @@ def set_custom_style():
             background-color: var(--background-color);
             padding: 2rem 0;
             text-align: center;
-            color: var(--text-color);
+            color: var(--button-text-color);
             margin-bottom: 2rem;
             border-bottom: 1px solid #EEEEEE;
         }
