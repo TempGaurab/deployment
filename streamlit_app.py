@@ -51,7 +51,7 @@ def set_custom_style():
         }
         .footer {
             text-align: center;
-            color: var(--text-color);
+            color: black;
             padding: 1.5rem;
             background-color: var(--primary-color);
             color: white;
