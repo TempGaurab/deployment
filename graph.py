@@ -9,8 +9,7 @@ def generate_graph(data):
     keys = list(data.keys())
     # Add edges directly from the data dictionary
     for course, prerequisites in data.items():
-        if prerequisites:
-            G.add_edges_from((prereq, course) for prereq in prerequisites)
+        G.add_edges_from((prereq, course) for prereq in prerequisites)
 
     # Assign a 'layer' attribute to each node based on the number of prerequisites
     for course, prerequisites in data.items():
