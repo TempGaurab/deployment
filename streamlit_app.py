@@ -7,11 +7,11 @@ def set_custom_style():
         """
         <style>
         :root {
-    --primary-color: #FFEFCB; /* Off-white for a clean and modern look */
-    --secondary-color: #FF6F61; /* Vibrant coral for accents */
-    --text-color: #333333; /* Dark gray for improved readability */
-    --background-color: #F0F0F0; /* Light gray background for subtle contrast */
-}
+            --primary-color: #FFEFCB; /* Off-white for a clean and modern look */
+            --secondary-color: #FF6F61; /* Vibrant coral for accents */
+            --text-color: #333333; /* Dark gray for improved readability */
+            --background-color: #F0F0F0; /* Light gray background for subtle contrast */
+        }
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--background-color);
@@ -27,9 +27,9 @@ def set_custom_style():
         h1 {
             font-size: 4rem;
         }
-        p{
-        color: var(--text-color);
-        font-size: 1.2rem;
+        p {
+            color: var(--text-color);
+            font-size: 1.2rem;
         }
         .course-selector {
             background-color: white;
@@ -38,9 +38,8 @@ def set_custom_style():
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 0rem;
             text-align: center;
-            display: none;
         }
-        .submit-button {
+        .submit-button, .clear-button {
             background-color: var(--primary-color);
             color: white;
             border: none;
@@ -50,7 +49,7 @@ def set_custom_style():
             font-size: 1.2rem;
             transition: background-color 0.3s;
         }
-        .submit-button:hover {
+        .submit-button:hover, .clear-button:hover {
             background-color: var(--secondary-color);
         }
         .footer {
@@ -82,21 +81,29 @@ def header():
     )
 
 def course_selector():
-    st.markdown(
-        '<span class="course-selector">'
-        '</span>',
-        unsafe_allow_html=True
+    # Create a text input field and store its value in session state
+    if 'selected_course' not in st.session_state:
+        st.session_state['selected_course'] = ""
+    
+    # Capture the input for course name
+    st.session_state['selected_course'] = st.text_input(
+        "Enter a course name", 
+        st.session_state['selected_course']
     )
-    return st.text_input("Enter a course name")
 
-def submit_button(selected_course):
+def submit_button():
     if st.button('Submit', key="submit", help="Click to submit the selected course"):
-        if selected_course:
-            course_details = algorithm.final(selected_course)
-            st.write(f"### You entered: {selected_course}")
+        if st.session_state['selected_course']:
+            course_details = algorithm.final(st.session_state['selected_course'])
+            st.write(f"### You entered: {st.session_state['selected_course']}")
             st.write(f"**Course Details:** {course_details}")
         else:
             st.write("Please enter a course name.")
+
+def clear_button():
+    # Clear the input field by resetting the session state
+    if st.button('Clear', key="clear", help="Click to clear the input"):
+        st.session_state['selected_course'] = ""
 
 def footer():
     st.markdown(
@@ -120,8 +127,9 @@ def footer():
 def main():
     set_custom_style()
     header()
-    selected_course = course_selector()
-    submit_button(selected_course)
+    course_selector()
+    submit_button()
+    clear_button()  # Add the Clear button
     footer()
 
 if __name__ == "__main__":
