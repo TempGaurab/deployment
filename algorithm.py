@@ -63,7 +63,7 @@ def get_title(selected_course):
         data = json.load(f)
     for course in data:
         if course['Course_Code'] == selected_course:
-            return course['Course_Title'], course['Link']
+            return course['Course_Title']
 
 def final(selected_course):
     user_input = selected_course

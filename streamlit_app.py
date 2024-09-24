@@ -118,10 +118,9 @@ def buttons():
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
                 course_details = algorithm.final(st.session_state['selected_course'])
-                course_title, course_link = algorithm.get_title(st.session_state['selected_course'])
+                course_title = algorithm.get_title(st.session_state['selected_course'])
                 graphs = graph.generate_graph(course_details)
                 st.write(f"### You entered: {st.session_state['selected_course']}: {course_title}")
-                st.markdown(f"[Course Link]({course_link})")
                 # Increase the image size by specifying width
                 st.image(graphs, width=800)
             else:
