@@ -65,6 +65,7 @@ def get_title(selected_course):
     for course in data:
         if course['Course_Code'] == selected_course:
             return course['Course_Title']
+        return "Please enter a valid code"
 
 def final(selected_course):
     user_input = selected_course
