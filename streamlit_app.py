@@ -55,6 +55,10 @@ def set_custom_style():
             font-size: 1rem;
             transition: background-color 0.3s;
         }
+        .stButton > button {
+            background-color: white;
+            color: text;
+        }
         .submit-button:hover, .clear-button:hover {
             background-color: #E74C3C;
         }
