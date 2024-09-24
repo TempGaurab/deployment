@@ -26,6 +26,8 @@ def get_prerequisites(course, data, visited=None, depth=0, max_depth=5):
     }
 
 def format_prerequisites(nested_prereqs):
+    if nested_prereqs == []:
+        return "This course does not require a pre requisite"
     result = defaultdict(set)  # Use a set to avoid duplicates
     
     def traverse(course_info):
