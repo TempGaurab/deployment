@@ -16,7 +16,7 @@ def generate_graph(data):
     plt.figure(figsize=(12, 10))
     
     # Use graphviz_layout with "twopi" for hierarchical layout
-    pos = graphviz_layout(G, prog="circo")
+    pos = graphviz_layout(G, prog="twopi")
     
     # Draw nodes
     nx.draw_networkx_nodes(G, pos, node_size=3000, node_color='lightblue')
