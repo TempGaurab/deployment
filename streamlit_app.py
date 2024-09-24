@@ -125,7 +125,7 @@ def buttons():
                 else:
                     graphs = graph.generate_graph(course_details)
                     st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
-                    st.image(graphs, width=800)
+                    st.image(graphs, use_column_width='auto')
             else:
                 st.write("Please enter a course name.")
     
