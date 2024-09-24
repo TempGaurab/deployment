@@ -30,10 +30,6 @@ def set_custom_style():
         }
         h1 {
             font-size: 4rem;
-            color: var(--primary-color:);
-        }
-        h3 {
-            color: var(--primary-color:);
         }
         p {
             color: var(--primary-color:);
