@@ -118,6 +118,7 @@ def buttons():
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
                 course_title, course_link, course_details = algorithm.final(st.session_state['selected_course'])
+                course_title = course_title.upper()
                 if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
                     st.write(f"### {st.session_state['selected_course']}: {course_title}")
                     st.write("This course needs no prerequisites.")
