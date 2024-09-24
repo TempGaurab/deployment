@@ -120,13 +120,15 @@ def buttons():
                 course_details = algorithm.final(st.session_state['selected_course'])
                 graphs = graph.generate_graph(course_details)
                 st.write(f"### You entered: {st.session_state['selected_course']}")
-                st.image(graphs)
+                # Increase the image size by specifying width
+                st.image(graphs, width=800)
             else:
                 st.write("Please enter a course name.")
     
     with col2:
         if st.button('Clear', key="clear", help="Click to clear the input"):
             st.session_state['selected_course'] = ""
+
 
 def footer():
     st.markdown(
