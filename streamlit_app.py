@@ -121,7 +121,7 @@ def buttons():
                 graphs = graph.generate_graph(course_details)
                 st.write(f"### You entered: {st.session_state['selected_course']}")
                 st.write(f'{course_details}')
-                st.image(graphs, caption="Course Prerequisites Graph")
+                st.image(graphs)
             else:
                 st.write("Please enter a course name.")
     
