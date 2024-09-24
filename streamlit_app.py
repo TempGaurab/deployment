@@ -120,6 +120,7 @@ def buttons():
                 course_title, course_details = algorithm.final(st.session_state['selected_course'])
                 graphs = graph.generate_graph(course_details)
                 st.write(f"###  {st.session_state['selected_course']}: {course_title}")
+                st.write(f"###  {st.session_state['selected_course']}: {course_details}")
                 st.image(graphs, width=800)
             else:
                 st.write("Please enter a course name.")
