@@ -5,8 +5,7 @@ from io import BytesIO
 def generate_graph(data):
     # Initialize a directed graph and add edges based on the provided data
     G = nx.DiGraph()
-    main_node = keys[0] if len(keys) > 0 else ""
-    keys = list(data.keys())
+
     # Add edges directly from the data dictionary
     for course, prerequisites in data.items():
         G.add_edges_from((prereq, course) for prereq in prerequisites)
@@ -18,7 +17,7 @@ def generate_graph(data):
             G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
 
     keys = list(data.keys())
-    
+    main_node = keys[0] if len(keys) > 0 else ""
 
     # Draw the graph
     plt.figure(figsize=(10, 8))
