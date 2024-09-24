@@ -1,6 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 from io import BytesIO
+from networkx.drawing.nx_pydot import graphviz_layout
 
 def generate_graph(data):
     # Initialize a directed graph
@@ -13,7 +14,7 @@ def generate_graph(data):
 
     # Draw the graph
     plt.figure(figsize=(10, 8))
-    pos = nx.spring_layout(G)  # position layout for nodes
+    pos = graphviz_layout(G, prog="dot")
     nx.draw(G, pos, with_labels=True, node_size=2000, node_color='lightblue', font_size=10, font_weight='bold', arrowsize=20)
     plt.title("Course Prerequisites Graph")
 
