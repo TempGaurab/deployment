@@ -15,19 +15,21 @@ def generate_graph(data):
         G.nodes[course]['subset'] = len(prerequisites)
         for prereq in prerequisites:
             G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
+
     keys = list(data.keys())
     main_node = keys[0] if len(keys) > 0 else ""
+
     # Draw the graph
     plt.figure(figsize=(10, 8))
     node_colors = ['orange' if node == main_node else 'skyblue' for node in G.nodes]
-    # Generate the multipartite layout with the top-to-bottom orientation
-    pos = nx.multipartite_layout(G, subset_key='subset')
-    
-    # Adjust the positions to flip the graph to a top-to-bottom layout
-    pos = {node: (-x, y) for node, (x, y) in pos.items()}
 
+    # Generate the multipartite layout with the top-to-bottom orientation
+    pos = nx.multipartite_layout(G, subset_key='subset', align='horizontal')
+
+    # Draw the graph
     nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=3000, 
             font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
+
     # Save the figure to a BytesIO object
     img = BytesIO()
     plt.savefig(img, format='png')
