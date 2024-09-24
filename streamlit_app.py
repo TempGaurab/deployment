@@ -32,7 +32,7 @@ def set_custom_style():
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+            margin-bottom: 0rem;
             text-align: center;
         }
         .submit-button {
@@ -77,8 +77,8 @@ def header():
 
 def course_selector():
     st.markdown(
-        '<div class="course-selector">'
-        '</div>',
+        '<span class="course-selector">'
+        '</span>',
         unsafe_allow_html=True
     )
     return st.text_input("Enter a course name")
