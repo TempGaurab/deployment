@@ -26,8 +26,6 @@ def get_prerequisites(course, data, visited=None, depth=0, max_depth=5):
     }
 
 def format_prerequisites(nested_prereqs):
-    if nested_prereqs == []:
-        return "This course does not require a pre requisite"
     result = defaultdict(set)  # Use a set to avoid duplicates
     
     def traverse(course_info):
@@ -66,6 +64,12 @@ def get_title(selected_course, data):
             return course['Course_Title']
     return "Course title not found"
 
+def get_link(selected_course, data):
+    for course in data:
+        if course['Course_Code'] == selected_course:
+            return course['Link']
+    return "Course Link not found"
+
 def final(selected_course):
     selected_course = selected_course.strip().upper()
     user_input = selected_course
@@ -74,8 +78,9 @@ def final(selected_course):
     # Validate input
     if course_code_exists(user_input, data):
         title = get_title(user_input,data)
+        link = get_link(user_input,data)
         output = format_prerequisites(main(user_input, data))
-        return title,output
+        return title,link,output
     else:
         return("Course code not found. Please enter a valid course code.")
     
