@@ -46,18 +46,14 @@ def set_custom_style():
             text-align: center;
         }
         .submit-button, .clear-button {
-            background-color: black;
-            color: white;
+            background-color: white;
+            color: black;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s;
-        }
-        .stButton > button {
-            background-color: white;
-            color: text;
         }
         .submit-button:hover, .clear-button:hover {
             background-color: #E74C3C;
