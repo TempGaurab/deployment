@@ -1,2 +1,18 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
 def generate_graph(data):
-    return f"graph of {data}"
+    # Initialize a directed graph
+    G = nx.DiGraph()
+
+    # Add edges based on the provided data
+    for course, prerequisites in data.items():
+        for prereq in prerequisites:
+            G.add_edge(prereq, course)
+
+    # Draw the graph
+    plt.figure(figsize=(10, 8))
+    pos = nx.spring_layout(G)  # position layout for nodes
+    nx.draw(G, pos, with_labels=True, node_size=2000, node_color='lightblue', font_size=10, font_weight='bold', arrowsize=20)
+    plt.title("Course Prerequisites Graph")
+    plt.show()
