@@ -91,19 +91,22 @@ def course_selector():
         st.session_state['selected_course']
     )
 
-def submit_button():
-    if st.button('Submit', key="submit", help="Click to submit the selected course"):
-        if st.session_state['selected_course']:
-            course_details = algorithm.final(st.session_state['selected_course'])
-            st.write(f"### You entered: {st.session_state['selected_course']}")
-            st.write(f"**Course Details:** {course_details}")
-        else:
-            st.write("Please enter a course name.")
-
-def clear_button():
-    # Clear the input field by resetting the session state
-    if st.button('Clear', key="clear", help="Click to clear the input"):
-        st.session_state['selected_course'] = ""
+def buttons():
+    # Create two columns to place the buttons side by side
+    col1, col2 = st.columns([1, 1])  # Adjust the ratio for column width if needed
+    
+    with col1:
+        if st.button('Submit', key="submit", help="Click to submit the selected course"):
+            if st.session_state['selected_course']:
+                course_details = algorithm.final(st.session_state['selected_course'])
+                st.write(f"### You entered: {st.session_state['selected_course']}")
+                st.write(f"**Course Details:** {course_details}")
+            else:
+                st.write("Please enter a course name.")
+    
+    with col2:
+        if st.button('Clear', key="clear", help="Click to clear the input"):
+            st.session_state['selected_course'] = ""
 
 def footer():
     st.markdown(
@@ -128,8 +131,7 @@ def main():
     set_custom_style()
     header()
     course_selector()
-    submit_button()
-    clear_button()  # Add the Clear button
+    buttons()  # Call the combined Submit and Clear buttons
     footer()
 
 if __name__ == "__main__":
