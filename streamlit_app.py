@@ -22,9 +22,9 @@ def set_custom_style():
         }
         .header {
             background-color: var(--background-color);
+            color: var(--text-color);
             padding: 2rem 0;
             text-align: center;
-            color: var(--button-text-color);
             margin-bottom: 2rem;
             border-bottom: 1px solid #EEEEEE;
         }
