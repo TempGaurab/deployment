@@ -17,9 +17,10 @@ def generate_graph(data):
             G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
     keys = list(data.keys())
     main_node = keys[0] if len(keys) > 0 else ""
+    second_node = keys[1] if len(keys) > 0 else ""
     # Draw the graph
     plt.figure(figsize=(10, 8))
-    node_colors = ['darkblue' if node == main_node else 'lightblue' for node in G.nodes]
+    node_colors = ['darkred' if node == main_node else 'orange' if node == second_node else 'skyblue' for node in G.nodes]
     # Generate the multipartite layout with the top-to-bottom orientation
     pos = nx.multipartite_layout(G, subset_key='subset')
     
