@@ -7,7 +7,7 @@ def set_custom_style():
         """
         <style>
         :root {
-    --primary-color: #FAFAFA; /* Off-white for a clean and modern look */
+    --primary-color: #FFFDD0; /* Off-white for a clean and modern look */
     --secondary-color: #FF6F61; /* Vibrant coral for accents */
     --text-color: #333333; /* Dark gray for improved readability */
     --background-color: #F0F0F0; /* Light gray background for subtle contrast */
