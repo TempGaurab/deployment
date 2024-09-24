@@ -16,6 +16,9 @@ def generate_graph(data):
         for prereq in prerequisites:
             G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
 
+    # Determine the main node (the first course in the data dictionary)
+    main_node = list(data.keys())[0]
+
     # Draw the graph
     plt.figure(figsize=(10, 8))
     
@@ -25,8 +28,12 @@ def generate_graph(data):
     # Adjust the positions to flip the graph to a top-to-bottom layout
     pos = {node: (-x, y) for node, (x, y) in pos.items()}
 
-    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=3000, 
+    # Set node colors: red for the main node, lightblue for others
+    node_colors = ['red' if node == main_node else 'lightblue' for node in G.nodes]
+
+    nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=3000, 
             font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
+    
     # Save the figure to a BytesIO object
     img = BytesIO()
     plt.savefig(img, format='png')
