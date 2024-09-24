@@ -34,6 +34,7 @@ def set_custom_style():
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 0rem;
             text-align: center;
+            display: none;
         }
         .submit-button {
             background-color: var(--primary-color);
