@@ -115,6 +115,10 @@ def course_selector():
 def buttons():
     col1, col2 = st.columns([8, 1])
     
+    # State to track whether the image is enlarged
+    if 'enlarge_image' not in st.session_state:
+        st.session_state['enlarge_image'] = False
+
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
@@ -126,13 +130,24 @@ def buttons():
                 else:
                     graphs = graph.generate_graph(course_details)
                     st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
-                    st.image(graphs, use_column_width="auto", output_format="PNG")
+
+                    # Toggle image size based on the state
+                    if st.session_state['enlarge_image']:
+                        st.image(graphs, use_column_width="auto", output_format="PNG", width=800)  # Set a larger width
+                    else:
+                        st.image(graphs, use_column_width="auto", output_format="PNG")
+
+                    # Button to enlarge the image
+                    if st.button('Enlarge Image', key="enlarge", help="Click to enlarge the image"):
+                        st.session_state['enlarge_image'] = not st.session_state['enlarge_image']
+
             else:
                 st.write("Please enter a course name.")
     
     with col2:
         if st.button('Clear', key="clear", help="Click to clear the input"):
             st.session_state['selected_course'] = ""
+            st.session_state['enlarge_image'] = False  # Reset image size when clearing
 
 
 def footer():
