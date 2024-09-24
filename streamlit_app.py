@@ -30,13 +30,13 @@ def set_custom_style():
         }
         h1 {
             font-size: 4rem;
-            color: var(--text-color);
+            color: black);
         }
         h3 {
-            color: var(--text-color);
+            color: black;
         }
         p {
-            color: #e28506
+            color: black;
             font-size: 1.2rem;
         }
         .course-selector {
