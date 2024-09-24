@@ -5,19 +5,21 @@ from io import BytesIO
 def generate_graph(data):
     # Initialize a directed graph and add edges based on the provided data
     G = nx.DiGraph()
-
-    # Add edges directly from the data dictionary
-    for course, prerequisites in data.items():
-        G.add_edges_from((prereq, course) for prereq in prerequisites)
-
-    # Assign a 'layer' attribute to each node based on the number of prerequisites
-    for course, prerequisites in data.items():
-        G.nodes[course]['subset'] = len(prerequisites)
-        for prereq in prerequisites:
-            G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
-
-    keys = list(data.keys())
     main_node = keys[0] if len(keys) > 0 else ""
+    keys = list(data.keys())
+    if len(keys) == 1:
+        G.add_node(main_node)
+    else:
+        # Add edges directly from the data dictionary
+        for course, prerequisites in data.items():
+            G.add_edges_from((prereq, course) for prereq in prerequisites)
+
+        # Assign a 'layer' attribute to each node based on the number of prerequisites
+        for course, prerequisites in data.items():
+            G.nodes[course]['subset'] = len(prerequisites)
+            for prereq in prerequisites:
+                G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
+    
 
     # Draw the graph
     plt.figure(figsize=(10, 8))
