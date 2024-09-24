@@ -1,4 +1,5 @@
 import streamlit as st
+import algorithm
 
 # Custom CSS to style the app
 st.markdown(
@@ -74,7 +75,7 @@ selected_course = st.text_input("Enter a course name")
 if st.button('Submit', key="submit", help="Click to submit the selected course"):
     if selected_course:
         # Call the function from the algorithm module to get the course details
-        course_details = selected_course
+        course_details = algorithm.final(selected_course)
         
         # Display the selected course and its details
         st.write(f"### You entered: {selected_course}")
