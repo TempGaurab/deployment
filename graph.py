@@ -16,7 +16,7 @@ def generate_graph(data):
     G.add_edges_from(edges)
     # Draw the graph
     plt.figure(figsize=(10, 8))
-    pos = nx.shell_layout(G)
+    pos = nx.nx_pydot.graphviz_layout(G, prog='dot')
     nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=3000, 
         font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
     # Save the figure to a BytesIO object
