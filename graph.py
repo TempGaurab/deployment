@@ -13,7 +13,7 @@ def generate_graph(data):
 
     # Draw the graph
     plt.figure(figsize=(10, 8))
-    pos = nx.nx_agraph.graphviz_layout(G, prog='dot')  # position layout for nodes
+    pos = nx.spring_layout(G)  # position layout for nodes
     nx.draw(G, pos, with_labels=True, node_size=2000, node_color='lightblue', font_size=10, font_weight='bold', arrowsize=20)
     plt.title("Course Prerequisites Graph")
 
