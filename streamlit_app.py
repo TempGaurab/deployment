@@ -93,7 +93,7 @@ def course_selector():
 
 def buttons():
     # Create two columns to place the buttons side by side
-    col1, col2 = st.columns([1, 1])  # Adjust the ratio for column width if needed
+    col1, col2 = st.columns([0.1, 1])  # Adjust the ratio for column width if needed
     
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
