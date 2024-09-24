@@ -62,16 +62,18 @@ def get_title(selected_course):
     selected_course = selected_course.strip().upper()
     with open('courses.json', 'r') as f:
         data = json.load(f)
-    for course in data:
-        if course['Course_Code'] == selected_course:
-            return course['Course_Title']
-        return "Please enter a valid code"
+    if course_code_exists(selected_course, data):
+        for course in data:
+            if course['Course_Code'] == selected_course:
+                return course['Course_Title']
+    else:
+        return("Course code not found. Please enter a valid course code.")
 
 def final(selected_course):
+    selected_course = selected_course.strip().upper()
     user_input = selected_course
     with open('courses.json', 'r') as f:
         data = json.load(f)
-
     # Validate input
     if course_code_exists(user_input, data):
         output = format_prerequisites(main(user_input, data))
