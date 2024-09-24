@@ -8,10 +8,10 @@ def set_custom_style():
         """
         <style>
         :root {
-            --primary-color: white; /* Off-white for a clean and modern look */
-            --secondary-color: white; /* Vibrant coral for accents */
-            --text-color: #333333; /* Dark gray for improved readability */
-            --background-color: #F0F0F0; /* Light gray background for subtle contrast */
+            --primary-color: #FFFFFF;
+            --secondary-color: #FF6F61;
+            --text-color: #333333;
+            --background-color: #FFFFFF;
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -22,44 +22,49 @@ def set_custom_style():
             background-color: var(--primary-color);
             padding: 2rem 0;
             text-align: center;
-            color: white;
+            color: var(--text-color);
             margin-bottom: 2rem;
+            border-bottom: 1px solid #EEEEEE;
         }
         h1 {
             font-size: 4rem;
+            color: var(--text-color);
+        }
+        h3 {
+            color: var(--text-color);
         }
         p {
             color: var(--text-color);
             font-size: 1.2rem;
         }
         .course-selector {
-            background-color: white;
+            background-color: var(--primary-color);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 0rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
             text-align: center;
         }
         .submit-button, .clear-button {
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
             color: white;
             border: none;
-            padding: 1rem 1.5rem;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: background-color 0.3s;
         }
         .submit-button:hover, .clear-button:hover {
-            background-color: var(--secondary-color);
+            background-color: #E74C3C;
         }
         .footer {
             text-align: center;
-            color: black;
+            color: var(--text-color);
             padding: 1.5rem;
             background-color: var(--primary-color);
-            color: white;
             margin-top: 2rem;
+            border-top: 1px solid #EEEEEE;
         }
         .footer img {
             width: 24px;
@@ -82,19 +87,16 @@ def header():
     )
 
 def course_selector():
-    # Create a text input field and store its value in session state
     if 'selected_course' not in st.session_state:
         st.session_state['selected_course'] = ""
     
-    # Capture the input for course name
     st.session_state['selected_course'] = st.text_input(
         "Enter a course name", 
         st.session_state['selected_course']
     )
 
 def buttons():
-    # Create two columns to place the buttons side by side
-    col1, col2 = st.columns([8, 1])  # Adjust the ratio for column width if needed
+    col1, col2 = st.columns([8, 1])
     
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
@@ -133,7 +135,7 @@ def main():
     set_custom_style()
     header()
     course_selector()
-    buttons()  # Call the combined Submit and Clear buttons
+    buttons()
     footer()
 
 if __name__ == "__main__":
