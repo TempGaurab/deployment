@@ -119,7 +119,7 @@ def buttons():
             if st.session_state['selected_course']:
                 course_title, course_details = algorithm.final(st.session_state['selected_course'])
                 graphs = graph.generate_graph(course_details)
-                st.write(f"###  {st.session_state['selected_course'].upper()}: {course_title}")
+                st.write(f"###  {st.session_state['selected_course']}: {course_title}")
                 # Increase the image size by specifying width
                 st.image(graphs, width=800)
             else:

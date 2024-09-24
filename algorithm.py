@@ -55,7 +55,7 @@ def main(course_title, data):
     return False
 
 def course_code_exists(course_code, data):
-    course_code = course_code.upper().strip()
+    course_code = course_code.upper()
     return any(course['Course_Code'] == course_code for course in data)
 
 def get_title(selected_course, data):
@@ -69,12 +69,11 @@ def final(selected_course):
     user_input = selected_course
     with open('courses.json', 'r') as f:
         data = json.load(f)
-    
     # Validate input
     if course_code_exists(user_input, data):
         output = format_prerequisites(main(user_input, data))
-        title = get_title(user_input, data)
-        return title, output
+        title = get_title(user_input,data)
+        return title,output
     else:
-        return "Course code not found. Please enter a valid course code."
+        return("Course code not found. Please enter a valid course code.")
     
