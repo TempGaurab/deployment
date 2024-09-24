@@ -10,7 +10,7 @@ def set_custom_style():
         :root {
             --primary-color: #FFFFFF;
             --secondary-color: #FF6F61;
-            --text-color: #333333;
+            --text-color: #000000;
             --background-color: #FFFFFF;
             --button-bg-color: #000000;
             --button-text-color: #FFFFFF;
