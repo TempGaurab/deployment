@@ -8,61 +8,41 @@ def set_custom_style():
         """
         <style>
         :root {
-            --primary-color-light: white;
-            --secondary-color-light: white;
-            --text-color-light: #333333;
-            --background-color-light: #F0F0F0;
-            
-            --primary-color-dark: black;
-            --secondary-color-dark: black;
-            --text-color-dark: #ECF0F1;
-            --background-color-dark: #34495E;
+            --primary-color: white; /* Off-white for a clean and modern look */
+            --secondary-color: white; /* Vibrant coral for accents */
+            --text-color: #333333; /* Dark gray for improved readability */
+            --background-color: #F0F0F0; /* Light gray background for subtle contrast */
         }
         body {
             font-family: 'Roboto', sans-serif;
-            transition: all 0.3s ease;
-        }
-        body.light-mode {
-            background-color: var(--background-color-light);
-            color: var(--text-color-light);
-        }
-        body.dark-mode {
-            background-color: var(--background-color-dark);
-            color: var(--text-color-dark);
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
         .header {
+            background-color: var(--primary-color);
             padding: 2rem 0;
             text-align: center;
+            color: white;
             margin-bottom: 2rem;
-        }
-        .light-mode .header {
-            background-color: var(--primary-color-light);
-            color: var(--text-color-light);
-        }
-        .dark-mode .header {
-            background-color: var(--primary-color-dark);
-            color: var(--text-color-dark);
         }
         h1 {
             font-size: 4rem;
         }
         p {
+            color: var(--text-color);
             font-size: 1.2rem;
         }
         .course-selector {
+            background-color: white;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+            margin-bottom: 0rem;
             text-align: center;
         }
-        .light-mode .course-selector {
-            background-color: white;
-        }
-        .dark-mode .course-selector {
-            background-color: #2C3E50;
-        }
         .submit-button, .clear-button {
+            background-color: var(--primary-color);
+            color: white;
             border: none;
             padding: 1rem 1.5rem;
             border-radius: 5px;
@@ -70,32 +50,16 @@ def set_custom_style():
             font-size: 1.2rem;
             transition: background-color 0.3s;
         }
-        .light-mode .submit-button, .light-mode .clear-button {
-            background-color: var(--primary-color-light);
-            color: var(--text-color-light);
-        }
-        .dark-mode .submit-button, .dark-mode .clear-button {
-            background-color: var(--primary-color-dark);
-            color: var(--text-color-dark);
-        }
         .submit-button:hover, .clear-button:hover {
-            background-color: var(--secondary-color-light);
-        }
-        .dark-mode .submit-button:hover, .dark-mode .clear-button:hover {
-            background-color: var(--secondary-color-dark);
+            background-color: var(--secondary-color);
         }
         .footer {
             text-align: center;
+            color: black;
             padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
             margin-top: 2rem;
-        }
-        .light-mode .footer {
-            background-color: var(--primary-color-light);
-            color: var(--text-color-light);
-        }
-        .dark-mode .footer {
-            background-color: var(--primary-color-dark);
-            color: var(--text-color-dark);
         }
         .footer img {
             width: 24px;
@@ -108,22 +72,6 @@ def set_custom_style():
         unsafe_allow_html=True
     )
 
-def toggle_theme():
-    if 'theme' not in st.session_state:
-        st.session_state.theme = 'light'
-    
-    if st.button('Toggle Theme'):
-        st.session_state.theme = 'dark' if st.session_state.theme == 'light' else 'light'
-    
-    # Apply the theme
-    st.markdown(f"""
-        <script>
-            var body = window.parent.document.querySelector('body');
-            body.classList.remove('light-mode', 'dark-mode');
-            body.classList.add('{st.session_state.theme}-mode');
-        </script>
-        """, unsafe_allow_html=True)
-
 def header():
     st.markdown(
         '<div class="header">'
@@ -134,16 +82,19 @@ def header():
     )
 
 def course_selector():
+    # Create a text input field and store its value in session state
     if 'selected_course' not in st.session_state:
         st.session_state['selected_course'] = ""
     
+    # Capture the input for course name
     st.session_state['selected_course'] = st.text_input(
         "Enter a course name", 
         st.session_state['selected_course']
     )
 
 def buttons():
-    col1, col2 = st.columns([8, 1])
+    # Create two columns to place the buttons side by side
+    col1, col2 = st.columns([8, 1])  # Adjust the ratio for column width if needed
     
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
@@ -180,10 +131,9 @@ def footer():
 
 def main():
     set_custom_style()
-    toggle_theme()
     header()
     course_selector()
-    buttons()
+    buttons()  # Call the combined Submit and Clear buttons
     footer()
 
 if __name__ == "__main__":
