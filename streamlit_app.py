@@ -78,7 +78,6 @@ def header():
 def course_selector():
     st.markdown(
         '<div class="course-selector">'
-        '<h2>Select a Course</h2>'
         '</div>',
         unsafe_allow_html=True
     )
