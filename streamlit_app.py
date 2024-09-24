@@ -8,8 +8,8 @@ def set_custom_style():
         """
         <style>
         :root {
-            --primary-color: #007BFF;
-            --secondary-color: #6C757D;
+            --primary-color: white;
+            --secondary-color: black;
             --background-color: var(--primary-color);
             --text-color: var(--secondary-color);
             --button-bg-color: var(--secondary-color);
