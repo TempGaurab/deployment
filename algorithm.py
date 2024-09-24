@@ -59,6 +59,7 @@ def course_code_exists(course_code, data):
     return any(course['Course_Code'] == course_code for course in data)
 
 def get_title(selected_course):
+    selected_course = selected_course.strip().upper()
     with open('courses.json', 'r') as f:
         data = json.load(f)
     for course in data:
