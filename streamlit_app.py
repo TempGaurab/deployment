@@ -21,8 +21,8 @@ def set_custom_style():
             color: var(--text-color);
         }
         .header {
-            background-color: var(--background-color);
-            color: var(--primary-color);
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
             padding: 2rem 0;
             text-align: center;
             margin-bottom: 2rem;
@@ -62,7 +62,7 @@ def set_custom_style():
         }
         .footer {
             text-align: center;
-            color: var(--text-color);
+            color: var(--secondary-color);
             padding: 1.5rem;
             background-color: var(--primary-color);
             margin-top: 2rem;
