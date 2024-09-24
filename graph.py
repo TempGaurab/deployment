@@ -16,6 +16,11 @@ def generate_graph(data):
         for prereq in prerequisites:
             G.nodes[prereq]['subset'] = G.nodes[prereq].get('subset', 0)
 
+    # Ensure that all courses are added to the graph, even if they have no prerequisites
+    for course in data.keys():
+        if course not in G:
+            G.add_node(course, subset=0)
+
     keys = list(data.keys())
     main_node = keys[0] if len(keys) > 0 else ""
 
