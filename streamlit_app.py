@@ -186,7 +186,7 @@ def about_the_club():
     .big-font {
         font-size:30px !important;
         font-weight: bold;
-        color: #003366;
+        color: --text-color;
         margin-bottom: 20px;
     }
     .club-description {
@@ -206,7 +206,7 @@ def about_the_club():
     }
     .team-member-role {
         font-weight: bold;
-        color: #003366;
+        color: --text-color;
     }
     .team-member-name {
         font-style: italic;
