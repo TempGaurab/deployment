@@ -32,7 +32,7 @@ def generate_graph(data):
     third_badge = {pre for node in second_badge for pre in G.predecessors(node)}
     # Define node colors
     node_colors = [
-        'orange' if node == main_node else 
+        'FFA500' if node == main_node else 
         '#E9B33F' if node in next_badge else 
         '#DABC66' if node in second_badge else 
         '#C3CAA4' if node in third_badge else 
