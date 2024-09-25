@@ -189,7 +189,7 @@ def main():
     
     # Create a sidebar for navigation
     st.sidebar.title("Navigation")
-    page = st.sidebar.radio("Go to", ("Course Navigation", "Professor Recommendation"))
+    page = st.sidebar.radio("Go to", ("Course Navigation", "Professor Recommendation", "About the Club"))
     
     header()
     
