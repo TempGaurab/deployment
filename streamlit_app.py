@@ -254,8 +254,7 @@ def about_the_club():
     st.markdown("---")
     st.markdown("### Join Us!")
     st.write("Interested in data science? Join our club to learn, collaborate, and grow together!")
-    if st.button("Learn More"):
-        st.markdown("[Visit our club page](https://www.nku.edu/academics/informatics/beyond/student-organizations.html)")
+    st.markdown("[Visit our club page](https://www.nku.edu/academics/informatics/beyond/student-organizations.html)")
 
 def main():
     set_custom_style()
