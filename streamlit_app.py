@@ -181,11 +181,82 @@ def professor_recommendation():
     st.write("This feature is coming soon. Stay tuned!")
 
 def about_the_club():
-    st.header("About the Club")
-    st.write("The Data Science Club is created for all those interested in topics related to Data Science and Data Analytics, not just those interested in pursuing a career in the field.  We discuss new technologies, internship/career experiences, and other special topics.  All skill levels and majors are welcome.")
-    st.write("Advisor: YangYang Tao")
-    st.write("President: Gaurab Baral")
-    st.write("Vice President: Aaditya Khanal")
+    st.markdown("""
+    <style>
+    .big-font {
+        font-size:30px !important;
+        font-weight: bold;
+        color: #003366;
+        margin-bottom: 20px;
+    }
+    .club-description {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f0f8ff;
+        border-radius: 10px;
+        border-left: 5px solid #003366;
+    }
+    .team-member {
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #e6f2ff;
+        border-radius: 5px;
+    }
+    .team-member-role {
+        font-weight: bold;
+        color: #003366;
+    }
+    .team-member-name {
+        font-style: italic;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<p class="big-font">About the Data Science Club</p>', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="club-description">
+    The Data Science Club is created for all those interested in topics related to Data Science and Data Analytics, 
+    not just those interested in pursuing a career in the field. We discuss new technologies, internship/career experiences, 
+    and other special topics. All skill levels and majors are welcome.
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.subheader("Our Team")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">Advisor:</span><br>
+            <span class="team-member-name">Dr. YangYang Tao</span>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">President:</span><br>
+            <span class="team-member-name">Gaurab Baral</span>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">Vice President:</span><br>
+            <span class="team-member-name">Aaditya Khanal</span>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    st.markdown("### Join Us!")
+    st.write("Interested in data science? Join our club to learn, collaborate, and grow together!")
+    if st.button("Learn More"):
+        st.markdown("[Visit our club page](https://www.nku.edu/academics/informatics/beyond/student-organizations.html)")
+
 def main():
     set_custom_style()
     
