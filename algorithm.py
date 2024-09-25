@@ -71,6 +71,9 @@ def get_link(selected_course, data):
     return "Course Link not found"
 
 def final(selected_course):
+    title = ""
+    link = ""
+    output = ""
     selected_course = selected_course.strip().upper()
     user_input = selected_course
     with open('courses.json', 'r') as f:
@@ -84,3 +87,4 @@ def final(selected_course):
     else:
         return("Course code not found. Please enter a valid course code.")
     
+final("bis 470")
