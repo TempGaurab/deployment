@@ -226,31 +226,48 @@ def about_the_club():
     
     st.subheader("Our Team")
     
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">Advisor:</span><br>
-            <span class="team-member-name">Dr. YangYang Tao</span><br>
-            <span class="team-member-email">yangyant@siu.edu</span>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">Vice President:</span><br>
-            <span class="team-member-name">Aaditya Khanal</span><br>
-            <span class="team-member-email">aaditya.khanal@siu.edu</span>
-        </div>
-        """, unsafe_allow_html=True)
-    with col2:
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">President:</span><br>
-            <span class="team-member-name">Gaurab Baral</span><br>
-            <span class="team-member-email">gaurab.baral@siu.edu</span>
-        </div>
-        """, unsafe_allow_html=True)
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    <div class="team-member">
+        <span class="team-member-role">Advisor:</span><br>
+        <span class="team-member-name">Dr. YangYang Tao</span><br>
+        <span class="team-member-email">taoy1@nku.edu</span>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("""
+    <div class="team-member">
+        <span class="team-member-role">President:</span><br>
+        <span class="team-member-name">Gaurab Baral</span><br>
+        <span class="team-member-email">baralg1@nku.edu</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="team-member">
+        <span class="team-member-role">Vice President:</span><br>
+        <span class="team-member-name">Aaditya Khanal</span><br>
+        <span class="team-member-email">khanala1@nku.edu</span>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("""
+    <div class="team-member">
+        <span class="team-member-role">E-board Member:</span><br>
+        <span class="team-member-name">Sushant Shrestha</span><br>
+        <span class="team-member-email">shresthas2@nku.edu</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div class="team-member">
+        <span class="team-member-role">E-board Member:</span><br>
+        <span class="team-member-name">Mith Sah</span><br>
+        <span class="team-member-email">sahm1@nku.edu</span>
+    </div>
+    """, unsafe_allow_html=True)
     
     st.markdown("---")
     st.markdown("### Join Us!")
