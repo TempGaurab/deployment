@@ -30,7 +30,6 @@ def set_custom_style():
             transform-origin: 0 0;
         }
         .header {
-            background-color: var(--background-color);
             color: var(--text-color);
             padding: 2rem 0;
             text-align: center;
