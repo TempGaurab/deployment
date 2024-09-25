@@ -197,7 +197,7 @@ def main():
         course_navigation()
     elif page == "Professor Recommendation":
         professor_recommendation()
-    elif page = "About the Club":
+    elif page == "About the Club":
         about_the_club()
     
     footer()
