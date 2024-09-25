@@ -235,19 +235,17 @@ def about_the_club():
             <span class="team-member-name">Dr. YangYang Tao</span>
         </div>
         """, unsafe_allow_html=True)
-        
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">President:</span><br>
-            <span class="team-member-name">Gaurab Baral</span>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
         st.markdown("""
         <div class="team-member">
             <span class="team-member-role">Vice President:</span><br>
             <span class="team-member-name">Aaditya Khanal</span>
+        </div>
+        """, unsafe_allow_html=True)
+    with col2:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">President:</span><br>
+            <span class="team-member-name">Gaurab Baral</span>
         </div>
         """, unsafe_allow_html=True)
     
