@@ -24,14 +24,17 @@ def generate_graph(data):
     keys = list(data.keys())
     main_node = keys[0] if len(keys) > 0 else ""
 
-    # Define the next badge of prerequisites
-    next_badge = set(G.predecessors(main_node))  # This represents the direct prerequisites for the main node
+    # Define the next badge of prerequisites (direct prerequisites of the main node)
+    next_badge = set(G.predecessors(main_node))  # Direct prerequisites for the main node
 
-    # Define node colors with the next badge being a different color (e.g., 'green')
+    # Define the predecessors of the next badge (the next level of prerequisites)
+    second_badge = {pre for node in next_badge for pre in G.predecessors(node)}
+
+    # Define node colors
     node_colors = [
         'orange' if node == main_node else 
         'green' if node in next_badge else 
-        '#D6BF73' if node in G.predecessors(next_badge) else 
+        '#D6BF73' if node in second_badge else 
         '#add8e6' 
         for node in G.nodes
     ]
@@ -50,4 +53,3 @@ def generate_graph(data):
     plt.close()  # Close the plot to free memory
     img.seek(0)  # Move to the beginning of the BytesIO object
     return img
-g
