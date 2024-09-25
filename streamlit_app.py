@@ -279,7 +279,7 @@ def about_the_club():
         st.markdown("Register Today: [Link to Registration Page](https://forms.office.com/Pages/ResponsePage.aspx?id=VRgyrFUfC02y-lMQhcowIv-1PvwRnMZOvss3Pxd3MshUOUE4MEI3OExBRDlCRFc1R0UyOU45RUVKTy4u&origin=QRCode)")
 
     with col2:
-        st.markdown("[Link to Club Page](https://www.nku.edu/academics/informatics/beyond/student-organizations.html)")
+        st.markdown("Club Webpage: [Link to Club Page](https://www.nku.edu/academics/informatics/beyond/student-organizations.html)")
 
 def main():
     set_custom_style()
