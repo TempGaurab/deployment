@@ -152,13 +152,6 @@ def buttons():
             st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
             st.image(graphs, use_column_width="auto", output_format="PNG")
 
-# Initialize session state variables if they don't exist
-if 'show_results' not in st.session_state:
-    st.session_state['show_results'] = False
-if 'selected_course' not in st.session_state:
-    st.session_state['selected_course'] = ""
-
-
 def footer():
     st.markdown(
         """
@@ -178,12 +171,36 @@ def footer():
         unsafe_allow_html=True
     )
 
-def main():
-    set_custom_style()
-    header()
+def course_navigation():
+    st.header("Course Navigation")
     course_selector()
     buttons()
+
+def professor_recommendation():
+    st.header("Professor Recommendation")
+    st.write("This feature is coming soon. Stay tuned!")
+
+def main():
+    set_custom_style()
+    
+    # Create a sidebar for navigation
+    st.sidebar.title("Navigation")
+    page = st.sidebar.radio("Go to", ("Course Navigation", "Professor Recommendation"))
+    
+    header()
+    
+    if page == "Course Navigation":
+        course_navigation()
+    elif page == "Professor Recommendation":
+        professor_recommendation()
+    
     footer()
+
+# Initialize session state variables if they don't exist
+if 'show_results' not in st.session_state:
+    st.session_state['show_results'] = False
+if 'selected_course' not in st.session_state:
+    st.session_state['selected_course'] = ""
 
 if __name__ == "__main__":
     main()
