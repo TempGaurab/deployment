@@ -70,6 +70,16 @@ def get_link(selected_course, data):
             return course['Link']
     return "Course Link not found"
 
+def get_all_courses():
+    with open('courses.json', 'r') as f:
+        data = json.load(f)
+    return [course['Course_Code'] for course in data]
+
+def is_course_in_system(course_code):
+    # This is a placeholder implementation. Replace with actual logic to check your course database.
+    all_courses = get_all_courses()  # You'll need to implement this function to return all course codes
+    return course_code.upper() in all_courses
+
 def final(selected_course):
     title = ""
     link = ""
@@ -86,5 +96,3 @@ def final(selected_course):
         return title,link,output
     else:
         return("Course code not found. Please enter a valid course code.")
-    
-print(final("bis 470"))

@@ -120,15 +120,19 @@ def buttons():
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
-                course_title, course_link, course_details = algorithm.final(st.session_state['selected_course'])
-                if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
-                    st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
-                    st.write("This course needs no prerequisites.")
-                    st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
+                # Check if the course is in the system
+                if algorithm.is_course_in_system(st.session_state['selected_course']):
+                    course_title, course_link, course_details = algorithm.final(st.session_state['selected_course'])
+                    if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
+                        st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
+                        st.write("This course needs no prerequisites.")
+                        st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
+                    else:
+                        graphs = graph.generate_graph(course_details)
+                        st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
+                        st.image(graphs, use_column_width="auto", output_format="PNG")
                 else:
-                    graphs = graph.generate_graph(course_details)
-                    st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
-                    st.image(graphs, use_column_width="auto", output_format="PNG")
+                    st.write("This course is not in the system. Please check the course name and try again.")
             else:
                 st.write("Please enter a course name.")
     
