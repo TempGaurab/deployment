@@ -128,7 +128,7 @@ def buttons():
                     st.session_state['show_results'] = True
                 else:
                     st.session_state['show_results'] = False
-                    st.write("This course is not in the system. Please check the course name and try again.")
+                    st.write("This course is not in the system. Please check the course name and Try Again.")
             else:
                 st.session_state['show_results'] = False
                 st.write("Please enter a course name.")
