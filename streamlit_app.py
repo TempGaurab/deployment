@@ -114,32 +114,49 @@ def course_selector():
 
 def buttons():
     col1, col2 = st.columns([8, 1])
-    course_title = ""
-    course_link = ""
-    course_details = ""
+    
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
-                st.session_state['selected_course'] = st.session_state['selected_course'].upper().strip()
-                # Check if the course is in the system
                 if algorithm.is_course_in_system(st.session_state['selected_course']):
                     course_title, course_link, course_details = algorithm.final(st.session_state['selected_course'])
-                    if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
-                        st.write(f"### {st.session_state['selected_course']}: {course_title}")
-                        st.write("This course needs no prerequisites.")
-                        st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
-                    else:
-                        graphs = graph.generate_graph(course_details)
-                        st.markdown(f"### {st.session_state['selected_course']}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
-                        st.image(graphs, use_column_width="auto", output_format="PNG")
+                    
+                    # Store the results in session state
+                    st.session_state['course_title'] = course_title
+                    st.session_state['course_link'] = course_link
+                    st.session_state['course_details'] = course_details
+                    st.session_state['show_results'] = True
                 else:
+                    st.session_state['show_results'] = False
                     st.write("This course is not in the system. Please check the course name and try again.")
             else:
+                st.session_state['show_results'] = False
                 st.write("Please enter a course name.")
     
     with col2:
-        if st.button('Clear', key="clear", help="Click to clear the input"):
-            st.session_state['selected_course'] = ""
+        if st.button('Clear', key="clear", help="Click to clear the output"):
+            st.session_state['show_results'] = False
+    
+    # Display results if they should be shown
+    if st.session_state.get('show_results', False):
+        course_title = st.session_state['course_title']
+        course_link = st.session_state['course_link']
+        course_details = st.session_state['course_details']
+        
+        if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
+            st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
+            st.write("This course needs no prerequisites.")
+            st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
+        else:
+            graphs = graph.generate_graph(course_details)
+            st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
+            st.image(graphs, use_column_width="auto", output_format="PNG")
+
+# Initialize session state variables if they don't exist
+if 'show_results' not in st.session_state:
+    st.session_state['show_results'] = False
+if 'selected_course' not in st.session_state:
+    st.session_state['selected_course'] = ""
 
 
 def footer():
