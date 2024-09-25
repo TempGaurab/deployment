@@ -182,7 +182,7 @@ def professor_recommendation():
 
 def about_the_club():
     st.header("About the Club")
-    st.write("This feature is coming soon. Stay tuned!")
+    st.write("TThe Data Science Club is created for all those interested in topics related to Data Science and Data Analytics, not just those interested in pursuing a career in the field.  We discuss new technologies, internship/career experiences, and other special topics.  All skill levels and majors are welcome.")
 
 def main():
     set_custom_style()
