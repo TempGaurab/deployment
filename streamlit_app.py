@@ -73,7 +73,6 @@ def set_custom_style():
             text-align: center;
             color: var(--text-color);
             padding: 1.5rem;
-            background-color: var(--background-color);
             margin-top: 2rem;
             border-top: 1px solid var(--text-color);
         }
