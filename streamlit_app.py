@@ -114,32 +114,28 @@ def course_selector():
 
 def buttons():
     col1, col2 = st.columns([8, 1])
-
+    
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
-                try:
-                    result = algorithm.final(st.session_state['selected_course'])
-                    if len(result) == 3:
-                        course_title, course_link, course_details = result
-                        if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
-                            st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
-                            st.write("This course needs no prerequisites.")
-                            st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
-                        else:
-                            graphs = graph.generate_graph(course_details)
-                            st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
-                            st.image(graphs, use_column_width="auto", output_format="PNG")
-                    else:
-                        st.error(f"Unexpected result format for course {st.session_state['selected_course']}. Please try again or contact support.")
-                except ValueError as e:
-                    st.error(f"Error processing course {st.session_state['selected_course']}: {str(e)}")
+                course_title, course_link, course_details = algorithm.final(st.session_state['selected_course'])
+                if len(algorithm.final(st.session_state['selected_course']) != 3):
+                    st.write("Course not found. Please enter a valid course code.")
+                    return
+                if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
+                    st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
+                    st.write("This course needs no prerequisites.")
+                    st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
+                else:
+                    graphs = graph.generate_graph(course_details)
+                    st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
+                    st.image(graphs, use_column_width="auto", output_format="PNG")
             else:
                 st.write("Please enter a course name.")
-
-with col2:
-    if st.button('Clear', key="clear", help="Click to clear the input"):
-        st.session_state['selected_course'] = ""
+    
+    with col2:
+        if st.button('Clear', key="clear", help="Click to clear the input"):
+            st.session_state['selected_course'] = ""
 
 
 def footer():
