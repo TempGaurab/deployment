@@ -194,7 +194,6 @@ def about_the_club():
         line-height: 1.6;
         margin-bottom: 30px;
         padding: 20px;
-        background-color: #f0f8ff;
         border-radius: 10px;
         border-left: 5px solid #003366;
     }
@@ -202,7 +201,6 @@ def about_the_club():
         margin-bottom: 15px;
         color: --text-color;
         padding: 10px;
-        background-color: #e6f2ff;
         border-radius: 5px;
     }
     .team-member-role {
