@@ -238,9 +238,9 @@ def about_the_club():
         """, unsafe_allow_html=True)
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">Vice President:</span><br>
-            <span class="team-member-name">Aaditya Khanal</span><br>
-            <span class="team-member-email">khanala1@nku.edu</span>
+            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-name">Mithilesh Sah</span><br>
+            <span class="team-member-email">sahm1@nku.edu</span>
         </div>
         """, unsafe_allow_html=True)
 
@@ -263,9 +263,9 @@ def about_the_club():
     with col3:
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">E-board Member:</span><br>
-            <span class="team-member-name">Mithilesh Sah</span><br>
-            <span class="team-member-email">sahm1@nku.edu</span>
+            <span class="team-member-role">Vice President:</span><br>
+            <span class="team-member-name">Aaditya Khanal</span><br>
+            <span class="team-member-email">khanala1@nku.edu</span>
         </div>
         """, unsafe_allow_html=True)
     
