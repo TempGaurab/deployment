@@ -33,9 +33,9 @@ def generate_graph(data):
     # Define node colors
     node_colors = [
         'orange' if node == main_node else 
-        '#D6BF73' if node in next_badge else 
-        '#CEC48A' if node in second_badge else 
-        '#BDCEB8' if node in third_badge else 
+        '#E4B64D' if node in next_badge else 
+        '#C8C799' if node in second_badge else 
+        '#BFCDB3' if node in third_badge else 
         '#add8e6' 
         for node in G.nodes
     ]
