@@ -180,6 +180,10 @@ def professor_recommendation():
     st.header("Professor Recommendation")
     st.write("This feature is coming soon. Stay tuned!")
 
+def about_the_club():
+    st.header("About the Club")
+    st.write("This feature is coming soon. Stay tuned!")
+
 def main():
     set_custom_style()
     
@@ -193,6 +197,8 @@ def main():
         course_navigation()
     elif page == "Professor Recommendation":
         professor_recommendation()
+    elif page = "About the Club":
+        about_the_club()
     
     footer()
 
