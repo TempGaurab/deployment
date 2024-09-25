@@ -31,7 +31,7 @@ def generate_graph(data):
     node_colors = [
         'orange' if node == main_node else 
         'green' if node in next_badge else 
-        '#D6BF73' if node in G.predecessors(main_node) else 
+        '#D6BF73' if node in G.predecessors(next_badge) else 
         '#add8e6' 
         for node in G.nodes
     ]
@@ -50,3 +50,4 @@ def generate_graph(data):
     plt.close()  # Close the plot to free memory
     img.seek(0)  # Move to the beginning of the BytesIO object
     return img
+g
