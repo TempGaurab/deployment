@@ -87,4 +87,4 @@ def final(selected_course):
     else:
         return("Course code not found. Please enter a valid course code.")
     
-final("bis 470")
+print(final("bis 470"))
