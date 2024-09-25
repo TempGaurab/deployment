@@ -255,7 +255,7 @@ def about_the_club():
         st.markdown("""
         <div class="team-member">
             <span class="team-member-role">E-board Member:</span><br>
-            <span class="team-member-name">Sushant Shrestha</span><br>
+            <span class="team-member-name">Sushant Man Shrestha</span><br>
             <span class="team-member-email">shresthas11@nku.edu</span>
         </div>
         """, unsafe_allow_html=True)
@@ -271,8 +271,8 @@ def about_the_club():
     
     st.markdown("---")
     st.markdown("### Join Us!")
-    st.write("Interested in data science? Join our club to learn, collaborate, and grow together!")
-    st.markdown("[Visit our club page](https://www.nku.edu/academics/informatics/beyond/student-organizations.html)")
+    st.write("Interested in Data Science? Join our club to learn, collaborate, and grow together!")
+    st.markdown("[Go to the Club Page](https://www.nku.edu/academics/informatics/beyond/student-organizations.html)")
 
 def main():
     set_custom_style()
