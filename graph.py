@@ -24,14 +24,23 @@ def generate_graph(data):
     keys = list(data.keys())
     main_node = keys[0] if len(keys) > 0 else ""
 
-    # Draw the graph
-    plt.figure(figsize=(10, 8))
-    node_colors = ['orange' if node == main_node else '#D6BF73' if node in G.predecessors(main_node) else '#add8e6' for node in G.nodes]
+    # Define the next badge of prerequisites
+    next_badge = set(G.predecessors(main_node))  # This represents the direct prerequisites for the main node
+
+    # Define node colors with the next badge being a different color (e.g., 'green')
+    node_colors = [
+        'orange' if node == main_node else 
+        'green' if node in next_badge else 
+        '#D6BF73' if node in G.predecessors(main_node) else 
+        '#add8e6' 
+        for node in G.nodes
+    ]
 
     # Generate the multipartite layout with the top-to-bottom orientation
     pos = nx.multipartite_layout(G, subset_key='subset', align='horizontal')
 
     # Draw the graph
+    plt.figure(figsize=(10, 8))
     nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=3000, 
             font_size=10, font_weight='bold', arrows=True, arrowstyle='->', arrowsize=15)
 
