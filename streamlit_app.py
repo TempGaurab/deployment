@@ -200,6 +200,7 @@ def about_the_club():
     }
     .team-member {
         margin-bottom: 15px;
+        color: --text-color;
         padding: 10px;
         background-color: #e6f2ff;
         border-radius: 5px;
