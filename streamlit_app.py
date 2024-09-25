@@ -114,14 +114,13 @@ def course_selector():
 
 def buttons():
     col1, col2 = st.columns([8, 1])
-    
+    course_title = ""
+    course_link = ""
+    course_details = ""
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
                 course_title, course_link, course_details = algorithm.final(st.session_state['selected_course'])
-                if len(algorithm.final(st.session_state['selected_course']) != 3):
-                    st.write("Course not found. Please enter a valid course code.")
-                    return
                 if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
                     st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
                     st.write("This course needs no prerequisites.")
