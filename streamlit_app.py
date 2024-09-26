@@ -127,6 +127,12 @@ def display_credits(hours):
     else:
         st.info("No corequisites for this course.")
 
+def display_semester(semester):
+    if semester:
+        st.info(f"The class is taught in: {semester}")
+    else:
+        st.info("Semester not defined.")
+
 
 def display_results(selected_catalog):
     if not st.session_state.get('show_results', False):
@@ -137,9 +143,11 @@ def display_results(selected_catalog):
     course_details = st.session_state['course_details']
     course_coreqs = st.session_state['course_coreqs']
     hours = st.session_state['hours']
+    semester = st.session_state['semester']
 
     display_course_info(course_title, course_link, selected_catalog)
     display_credits(hours)
+    display_semester(semester)
     if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
         st.info("This course needs no prerequisites.")
     else:
@@ -162,7 +170,7 @@ def buttons(selected_catalog):
             if st.session_state.get('selected_course', None):
                 if algorithm.is_course_in_system(st.session_state['selected_course'], selected_catalog):
                     # Perform the course processing and save results in session state
-                    course_title, course_link, course_details, course_coreqs, hours = algorithm.final(st.session_state['selected_course'], selected_catalog)
+                    course_title, course_link, course_details, course_coreqs, hours, semester = algorithm.final(st.session_state['selected_course'], selected_catalog)
                     
                     # Store results in session state
                     st.session_state['course_title'] = course_title
@@ -170,6 +178,7 @@ def buttons(selected_catalog):
                     st.session_state['course_details'] = course_details
                     st.session_state['course_coreqs'] = course_coreqs
                     st.session_state['hours'] = hours
+                    st.session_state['semester'] = semester
     
                     # Set show_results to True to display results
                     st.session_state['show_results'] = True
@@ -344,7 +353,9 @@ if 'selected_course' not in st.session_state:
 if 'selected_catalog' not in st.session_state:
     st.session_state['selected_catalog'] = "2024-2025" 
 if 'hours' not in st.session_state:
-    st.session_state['hours'] = "" 
+    st.session_state['hours'] = ""
+if 'semester' not in st.session_state:
+    st.session_state['semester'] = ""  
 
 if __name__ == "__main__":
     main()

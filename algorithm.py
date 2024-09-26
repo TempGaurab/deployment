@@ -77,6 +77,12 @@ def get_link(selected_course, data):
             return course['Link']
     return "Course Link not found"
 
+def get_Semester(selected_course, data):
+    for course in data:
+        if course['Course_Code'] == selected_course:
+            return course['Semester']
+    return "Semester not provided"
+
 def get_all_courses(selected_catalog):
     with open(f'courses/{selected_catalog}.json', 'r') as f:
         data = json.load(f)
@@ -98,6 +104,7 @@ def final(selected_course, selected_catalog):
     output = ""
     coreq = ""
     hours = ""
+    semester = ""
     selected_course = selected_course.strip().upper()
     user_input = selected_course
     with open(f'courses/{selected_catalog}.json', 'r') as f:
@@ -109,6 +116,7 @@ def final(selected_course, selected_catalog):
         output = format_prerequisites(main(user_input, data))
         coreq = get_coreq(user_input,data)
         hours = get_hours(user_input,data)
-        return title,link,output,coreq,hours
+        semester = get_Semester(user_input,data)
+        return title,link,output,coreq,hours,semester
     else:
         return("Course code not found. Please enter a valid course code.")
