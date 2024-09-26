@@ -183,7 +183,7 @@ def footer():
 
 def course_navigation():
     st.header("Course Navigation")
-    catalog_years = ["2023-2024", "2022-2023", "2021-2022", "2020-2021"]  # Add more years as needed
+    catalog_years = ["2024-2025", "2023-2024", "2022-2023"]  # Add more years as needed
     selected_catalog = st.selectbox("Select Catalog Year", catalog_years, key="catalog_selector")
     selected_catalog = selected_catalog.strip().upper()
     course_selector()
@@ -317,7 +317,7 @@ if 'show_results' not in st.session_state:
 if 'selected_course' not in st.session_state:
     st.session_state['selected_course'] = ""
 if 'selected_catalog' not in st.session_state:
-    st.session_state['selected_catalog'] = "2023-2024" 
+    st.session_state['selected_catalog'] = "2024-2025" 
 
 if __name__ == "__main__":
     main()
