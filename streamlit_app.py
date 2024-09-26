@@ -187,6 +187,7 @@ def course_navigation():
     catalog_years = ["2023-2024", "2022-2023", "2021-2022", "2020-2021"]  # Add more years as needed
     selected_catalog = st.selectbox("Select Catalog Year", catalog_years, key="catalog_selector")
     course_selector()
+    st.write(selected_catalog)
     buttons()
 
 def professor_recommendation():
