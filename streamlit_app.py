@@ -121,13 +121,13 @@ def display_corequisites(course_coreqs):
     else:
         st.info("No corequisites for this course.")
 
-def display_credits(hours,semester):
+def display_credits(hours, semester):
     if hours and semester:
-        st.info(f"Total Credit: {hours} |  Semester: {semester}")
+        st.info(f"**Total Credit:** {hours} |  **Semester:** {semester}")
     elif hours:
-        st.info(f"Total Credit: {hours}")
+        st.info(f"**Total Credit:** {hours}")
     elif semester:
-        st.info(f"Semester: {semester}")
+        st.info(f"**Semester:** {semester}")
     else:
         st.info("")
 
