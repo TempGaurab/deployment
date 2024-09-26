@@ -121,6 +121,12 @@ def display_corequisites(course_coreqs):
     else:
         st.info("No corequisites for this course.")
 
+def display_credits(hours):
+    if hours:
+        st.info(f"Total Credit: {hours}")
+    else:
+        st.info("No corequisites for this course.")
+
 
 def display_results(selected_catalog):
     if not st.session_state.get('show_results', False):
@@ -133,6 +139,7 @@ def display_results(selected_catalog):
     hours = st.session_state['hours']
 
     display_course_info(course_title, course_link, selected_catalog)
+    display_credits(hours)
     if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
         st.write("This course needs no prerequisites.")
     else:
@@ -180,7 +187,6 @@ def buttons(selected_catalog):
     
     # Display results if show_results is True
     display_results(selected_catalog)
-    st.write(f"{st.session_state['hours']}")
 def footer():
     st.markdown(
         """
