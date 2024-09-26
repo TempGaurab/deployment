@@ -111,8 +111,6 @@ def course_selector():
     )
 
 def buttons(selected_catalog):
-    selected_catalog = selected_catalog.strip().upper()
-    selected_catalog = st.session_state['selected_catalog']
     col1, col2 = st.columns([8, 1])
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
@@ -187,6 +185,7 @@ def course_navigation():
     st.header("Course Navigation")
     catalog_years = ["2023-2024", "2022-2023", "2021-2022", "2020-2021"]  # Add more years as needed
     selected_catalog = st.selectbox("Select Catalog Year", catalog_years, key="catalog_selector")
+    selected_catalog = selected_catalog.strip().upper()
     course_selector()
     buttons(selected_catalog)
 
