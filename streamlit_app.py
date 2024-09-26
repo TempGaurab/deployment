@@ -148,7 +148,7 @@ def buttons():
             st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
             if course_coreqs:
                 for coreq in course_coreqs:
-                    st.markdown(f"- {coreq}")
+                    st.markdown(f"Corequisites: - {coreq}")
             else:
                 st.info("No corequisites for this course.")
         else:
@@ -157,7 +157,7 @@ def buttons():
             st.image(graphs, use_column_width="auto", output_format="PNG")
             if course_coreqs:
                 for coreq in course_coreqs:
-                    st.markdown(f"- {coreq}")
+                    st.markdown(f"Corequisites: - {coreq}")
             else:
                 st.info("No corequisites for this course.")
 
