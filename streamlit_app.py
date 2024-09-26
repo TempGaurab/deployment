@@ -184,8 +184,7 @@ def footer():
 
 def course_navigation():
     st.header("Course Navigation")
-    st.subheader(f"Catalog Year: {st.session_state['selected_catalog']}")
-
+    st.subheader(f"Catalog Year: ")
     course_selector()
     buttons()
 
@@ -298,19 +297,6 @@ def main():
     
     # Create a sidebar for navigation
     st.sidebar.title("Navigation")
-    
-    # Add catalog year selection to the sidebar
-    catalog_years = ["2024-2025","2023-2024", "2022-2023"]  # Add more years as needed
-    selected_catalog = st.sidebar.selectbox("Select Catalog Year", catalog_years)
-    
-    # Store the selected catalog in session state
-    if 'selected_catalog' not in st.session_state or st.session_state['selected_catalog'] != selected_catalog:
-        st.session_state['selected_catalog'] = selected_catalog
-        # Clear previous results when catalog changes
-        st.session_state['show_results'] = False
-        st.session_state['selected_course'] = ""
-    
-    # Navigation options
     page = st.sidebar.radio("Go to", ("Course Navigation", "Professor Recommendation", "About the Club"))
     
     header()
@@ -329,11 +315,6 @@ if 'show_results' not in st.session_state:
     st.session_state['show_results'] = False
 if 'selected_course' not in st.session_state:
     st.session_state['selected_course'] = ""
-if 'selected_catalog' not in st.session_state:
-    st.session_state['selected_catalog'] = "2024-2025"  # Default to the most recent catalog
-
-if __name__ == "__main__":
-    main()
 
 if __name__ == "__main__":
     main()
