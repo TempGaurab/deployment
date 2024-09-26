@@ -154,7 +154,7 @@ def buttons(selected_catalog):
                 st.info("No corequisites for this course.")
         else:
             graphs = graph.generate_graph(course_details)
-            st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})  | st.session_state['selected_course']: {selected_catalog}", unsafe_allow_html=True)
+            st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})  | Catalog Year: {selected_catalog}", unsafe_allow_html=True)
             st.image(graphs, use_column_width="auto", output_format="PNG")
             if course_coreqs:
                 st.subheader("Corequisites")
