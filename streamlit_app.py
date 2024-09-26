@@ -129,10 +129,8 @@ def display_results(selected_catalog):
     course_link = st.session_state['course_link']
     course_details = st.session_state['course_details']
     course_coreqs = st.session_state['course_coreqs']
-    hours = st.session_state['hours']
 
     display_course_info(course_title, course_link, selected_catalog)
-    st.write("This course is taught in: ", hours)
     if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
         st.write("This course needs no prerequisites.")
     else:
@@ -180,6 +178,7 @@ def buttons(selected_catalog):
     
     # Display results if show_results is True
     display_results(selected_catalog)
+    st.write(f"Hours: {st.session_state['hours']}")
 def footer():
     st.markdown(
         """
