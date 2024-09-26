@@ -123,6 +123,7 @@ def display_corequisites(course_coreqs):
 
 def display_hours(hours):
     st.write("The class is taught is:", hours)
+
 def display_results(selected_catalog):
     if not st.session_state.get('show_results', False):
         return
@@ -182,7 +183,7 @@ def buttons(selected_catalog):
     
     # Display results if show_results is True
     display_results(selected_catalog)
-    st.write(f"Hours: {st.session_state['hours']}")
+    st.write(f"{st.session_state['hours']}")
 def footer():
     st.markdown(
         """
