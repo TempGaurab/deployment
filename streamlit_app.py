@@ -123,7 +123,7 @@ def buttons():
                     st.session_state['course_title'] = course_title
                     st.session_state['course_link'] = course_link
                     st.session_state['course_details'] = course_details
-                    st.session_state['course_coreqs'] = course_details
+                    st.session_state['course_coreqs'] = course_coreqs
                     st.session_state['show_results'] = True
                 else:
                     st.session_state['show_results'] = False
