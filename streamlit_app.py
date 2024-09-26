@@ -110,6 +110,39 @@ def course_selector():
         st.session_state['selected_course']
     )
 
+def display_course_info(course_title, course_link, selected_catalog):
+    st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link}) | Catalog Year: {selected_catalog}", unsafe_allow_html=True)
+
+def display_corequisites(course_coreqs):
+    if course_coreqs:
+        st.subheader("Corequisites")
+        for coreq in course_coreqs:
+            st.markdown(f"- {coreq}")
+    else:
+        st.info("No corequisites for this course.")
+
+def display_results():
+    if not st.session_state.get('show_results', False):
+        return
+
+    course_title = st.session_state['course_title']
+    course_link = st.session_state['course_link']
+    course_details = st.session_state['course_details']
+    course_coreqs = st.session_state['course_coreqs']
+    selected_catalog = st.session_state.get('selected_catalog', 'Not specified')
+
+    display_course_info(course_title, course_link, selected_catalog)
+
+    if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
+        st.write("This course needs no prerequisites.")
+    else:
+        graphs = graph.generate_graph(course_details)
+        st.image(graphs, use_column_width="auto", output_format="PNG")
+
+    display_corequisites(course_coreqs)
+
+# Call the function to display results
+
 def buttons(selected_catalog):
     col1, col2 = st.columns([8, 1])
     
@@ -145,33 +178,7 @@ def buttons(selected_catalog):
             st.session_state['show_results'] = False
     
     # Display results if show_results is True
-    if st.session_state.get('show_results', False):
-        course_title = st.session_state['course_title']
-        course_link = st.session_state['course_link']
-        course_details = st.session_state['course_details']
-        course_coreqs = st.session_state['course_coreqs']
-        
-        if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
-            st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
-            st.write("This course needs no prerequisites.")
-            st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
-            if course_coreqs:
-                st.subheader("Corequisites")
-                for coreq in course_coreqs:
-                    st.markdown(f"- {coreq}")
-            else:
-                st.info("No corequisites for this course.")
-        else:
-            graphs = graph.generate_graph(course_details)
-            st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link}) | Catalog Year: {selected_catalog}", unsafe_allow_html=True)
-            st.image(graphs, use_column_width="auto", output_format="PNG")
-            if course_coreqs:
-                st.subheader("Corequisites")
-                for coreq in course_coreqs:
-                    st.markdown(f"- {coreq}")
-            else:
-                st.info("No corequisites for this course.")
-
+    display_results()
 def footer():
     st.markdown(
         """
