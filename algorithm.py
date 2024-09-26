@@ -70,8 +70,8 @@ def get_link(selected_course, data):
             return course['Link']
     return "Course Link not found"
 
-def get_all_courses():
-    with open('courses/courses.json', 'r') as f:
+def get_all_courses(selected_catalog):
+    with open(f'courses/{selected_catalog}.json', 'r') as f:
         data = json.load(f)
     return [course['Course_Code'] for course in data]
 
@@ -85,15 +85,14 @@ def get_coreq(selected_course, data):
         if course['Course_Code'] == selected_course:
             return course['Coreq']
     return ""
-def final(selected_course):
-
+def final(selected_course, selected_catalog):
     title = ""
     link = ""
     output = ""
     coreq = ""
     selected_course = selected_course.strip().upper()
     user_input = selected_course
-    with open('courses/courses.json', 'r') as f:
+    with open(f'courses/{selected_catalog}.json', 'r') as f:
         data = json.load(f)
     # Validate input
     if course_code_exists(user_input, data):
