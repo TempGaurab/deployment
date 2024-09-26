@@ -141,7 +141,7 @@ def display_results(selected_catalog):
     display_course_info(course_title, course_link, selected_catalog)
     display_credits(hours)
     if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
-        st.write("This course needs no prerequisites.")
+        st.info("This course needs no prerequisites.")
     else:
         graphs = graph.generate_graph(course_details)
         st.image(graphs, use_column_width="auto", output_format="PNG")
