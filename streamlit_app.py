@@ -184,9 +184,78 @@ def footer():
 
 def course_navigation():
     st.header("Course Navigation")
-    st.subheader(f"Catalog Year: {st.session_state['selected_catalog']}")
-    course_selector()
-    buttons()
+
+    # Catalog year selection
+    catalog_years = ["2023-2024", "2022-2023", "2021-2022", "2020-2021"]  # Add more years as needed
+    selected_catalog = st.selectbox("Select Catalog Year", catalog_years, key="catalog_selector")
+
+    # Store the selected catalog in session state
+    if 'selected_catalog' not in st.session_state or st.session_state['selected_catalog'] != selected_catalog:
+        st.session_state['selected_catalog'] = selected_catalog
+        # Clear previous results when catalog changes
+        st.session_state['show_results'] = False
+        st.session_state['selected_course'] = ""
+
+    # Course selection
+    if 'selected_course' not in st.session_state:
+        st.session_state['selected_course'] = ""
+    
+    st.session_state['selected_course'] = st.text_input(
+        "Enter a course name", 
+        st.session_state['selected_course']
+    )
+
+    col1, col2 = st.columns([8, 1])
+    
+    with col1:
+        if st.button('Submit', key="submit", help="Click to submit the selected course"):
+            if st.session_state['selected_course']:
+                if algorithm.is_course_in_system(st.session_state['selected_course'], st.session_state['selected_catalog']):
+                    course_title, course_link, course_details, course_coreqs = algorithm.final(st.session_state['selected_course'], st.session_state['selected_catalog'])
+                    
+                    # Store the results in session state
+                    st.session_state['course_title'] = course_title
+                    st.session_state['course_link'] = course_link
+                    st.session_state['course_details'] = course_details
+                    st.session_state['course_coreqs'] = course_coreqs
+                    st.session_state['show_results'] = True
+                else:
+                    st.session_state['show_results'] = False
+                    st.write(f"This course is not in the {st.session_state['selected_catalog']} catalog. Please check the course name and catalog year, then try again.")
+            else:
+                st.session_state['show_results'] = False
+                st.write("Please enter a course name.")
+    
+    with col2:
+        if st.button('Clear', key="clear", help="Click to clear the output"):
+            st.session_state['show_results'] = False
+            st.session_state['selected_course'] = ""
+    
+    # Display results if they should be shown
+    if st.session_state.get('show_results', False):
+        display_results()
+
+def display_results():
+    course_title = st.session_state['course_title']
+    course_link = st.session_state['course_link']
+    course_details = st.session_state['course_details']
+    course_coreqs = st.session_state['course_coreqs']
+    
+    if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
+        st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
+        st.write("This course needs no prerequisites.")
+        st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
+    else:
+        graphs = graph.generate_graph(course_details)
+        st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
+        st.image(graphs, use_column_width="auto", output_format="PNG")
+    
+    if course_coreqs:
+        st.subheader("Corequisites")
+        for coreq in course_coreqs:
+            st.markdown(f"- {coreq}")
+    else:
+        st.info("No corequisites for this course.")
 
 def professor_recommendation():
     st.header("Professor Recommendation")
