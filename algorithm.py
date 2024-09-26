@@ -75,9 +75,9 @@ def get_all_courses(selected_catalog):
         data = json.load(f)
     return [course['Course_Code'] for course in data]
 
-def is_course_in_system(course_code):
+def is_course_in_system(course_code,selected_catalog):
     # This is a placeholder implementation. Replace with actual logic to check your course database.
-    all_courses = get_all_courses()  # You'll need to implement this function to return all course codes
+    all_courses = get_all_courses(selected_catalog)  # You'll need to implement this function to return all course codes
     return course_code.upper() in all_courses
 
 def get_coreq(selected_course, data):
