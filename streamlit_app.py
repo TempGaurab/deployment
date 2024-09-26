@@ -121,7 +121,7 @@ def display_corequisites(course_coreqs):
     else:
         st.info("No corequisites for this course.")
 
-def display_results():
+def display_results(selected_catalog):
     if not st.session_state.get('show_results', False):
         return
 
@@ -129,7 +129,6 @@ def display_results():
     course_link = st.session_state['course_link']
     course_details = st.session_state['course_details']
     course_coreqs = st.session_state['course_coreqs']
-    selected_catalog = st.session_state.get('selected_catalog', 'Not specified')
 
     display_course_info(course_title, course_link, selected_catalog)
 
@@ -178,7 +177,7 @@ def buttons(selected_catalog):
             st.session_state['show_results'] = False
     
     # Display results if show_results is True
-    display_results()
+    display_results(selected_catalog)
 def footer():
     st.markdown(
         """
