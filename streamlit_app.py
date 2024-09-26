@@ -117,7 +117,7 @@ def buttons():
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
                 if algorithm.is_course_in_system(st.session_state['selected_course']):
-                    course_title, course_link, course_details, course_coreq = algorithm.final(st.session_state['selected_course'])
+                    course_title, course_link, course_details, course_coreqs = algorithm.final(st.session_state['selected_course'])
                     
                     # Store the results in session state
                     st.session_state['course_title'] = course_title
@@ -150,6 +150,7 @@ def buttons():
             graphs = graph.generate_graph(course_details)
             st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
             st.image(graphs, use_column_width="auto", output_format="PNG")
+            st.write(f"Corequisites: {course_coreqs}")
 
 def footer():
     st.markdown(
