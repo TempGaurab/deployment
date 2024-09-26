@@ -121,8 +121,6 @@ def display_corequisites(course_coreqs):
     else:
         st.info("No corequisites for this course.")
 
-def display_hours(hours):
-    st.write("The class is taught is:", hours)
 
 def display_results(selected_catalog):
     if not st.session_state.get('show_results', False):
@@ -142,7 +140,6 @@ def display_results(selected_catalog):
         st.image(graphs, use_column_width="auto", output_format="PNG")
 
     display_corequisites(course_coreqs)
-    display_hours(hours)
 
 # Call the function to display results
 
