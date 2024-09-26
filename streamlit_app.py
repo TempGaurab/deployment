@@ -123,6 +123,7 @@ def buttons(selected_catalog):
                     st.session_state['course_link'] = course_link
                     st.session_state['course_details'] = course_details
                     st.session_state['course_coreqs'] = course_coreqs
+                    st.session_state['selected_catalog'] = selected_catalog
                     st.session_state['show_results'] = True
                 else:
                     st.session_state['show_results'] = False
@@ -153,7 +154,7 @@ def buttons(selected_catalog):
                 st.info("No corequisites for this course.")
         else:
             graphs = graph.generate_graph(course_details)
-            st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
+            st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})  | [Catalog:]({selected_catalog})    ", unsafe_allow_html=True)
             st.image(graphs, use_column_width="auto", output_format="PNG")
             if course_coreqs:
                 st.subheader("Corequisites")
