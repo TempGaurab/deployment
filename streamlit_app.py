@@ -159,7 +159,7 @@ def buttons():
             if course_coreqs:
                 for coreq in course_coreqs:
                     st.markdown(f"Corequisites:")
-                    st.markdown(f"Corequisites: - {coreq}")
+                    st.markdown(f"- {coreq}")
             else:
                 st.info("No corequisites for this course.")
 
