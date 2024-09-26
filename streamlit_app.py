@@ -123,7 +123,7 @@ def display_corequisites(course_coreqs):
 
 def display_credits(hours,semester):
     if hours and semester:
-        st.info(f"Total Credit: {hours} and Semester: {semester}")
+        st.info(f"Total Credit: {hours} |  Semester: {semester}")
     elif hours:
         st.info(f"Total Credit: {hours}")
     elif semester:
