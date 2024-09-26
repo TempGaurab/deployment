@@ -111,13 +111,13 @@ def course_selector():
     )
 
 def buttons(selected_catalog):
+    selected_catalog = selected_catalog.strip().upper()
+    selected_catalog = st.session_state['selected_catalog']
     col1, col2 = st.columns([8, 1])
     with col1:
         if st.button('Submit', key="submit", help="Click to submit the selected course"):
             if st.session_state['selected_course']:
-                if algorithm.is_course_in_system(st.session_state['selected_course']):
-                    selected_catalog = selected_catalog.strip().upper()
-                    selected_catalog = st.session_state['selected_catalog']
+                if algorithm.is_course_in_system(st.session_state['selected_course'], selected_catalog=selected_catalog):
                     course_title, course_link, course_details, course_coreqs = algorithm.final(st.session_state['selected_course'], selected_catalog)
                     
                     # Store the results in session state
