@@ -339,6 +339,8 @@ if 'selected_course' not in st.session_state:
     st.session_state['selected_course'] = ""
 if 'selected_catalog' not in st.session_state:
     st.session_state['selected_catalog'] = "2024-2025" 
+if 'hours' not in st.session_state:
+    st.session_state['hours'] = "" 
 
 if __name__ == "__main__":
     main()
