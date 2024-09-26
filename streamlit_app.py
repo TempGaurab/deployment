@@ -121,18 +121,15 @@ def display_corequisites(course_coreqs):
     else:
         st.info("No corequisites for this course.")
 
-def display_credits(hours):
-    if hours:
+def display_credits(hours,semester):
+    if hours and semester:
+        st.info(f"Total Credit: {hours} and Semester: {semester}")
+    elif hours:
         st.info(f"Total Credit: {hours}")
+    elif semester:
+        st.info(f"Semester: {semester}")
     else:
-        st.info("No corequisites for this course.")
-
-def display_semester(semester):
-    if semester:
-        st.info(f"The class is taught in: {semester}")
-    else:
-        st.info("Semester not defined.")
-
+        st.info("")
 
 def display_results(selected_catalog):
     if not st.session_state.get('show_results', False):
@@ -146,8 +143,7 @@ def display_results(selected_catalog):
     semester = st.session_state['semester']
 
     display_course_info(course_title, course_link, selected_catalog)
-    display_credits(hours)
-    display_semester(semester)
+    display_credits(hours,semester)
     if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
         st.info("This course needs no prerequisites.")
     else:
