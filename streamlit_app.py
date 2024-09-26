@@ -146,11 +146,20 @@ def buttons():
             st.write(f"### {st.session_state['selected_course'].upper()}: {course_title}")
             st.write("This course needs no prerequisites.")
             st.markdown(f"[Course Link]({course_link})", unsafe_allow_html=True)
+            if course_coreqs:
+                for coreq in course_coreqs:
+                    st.markdown(f"- {coreq}")
+            else:
+                st.info("No corequisites for this course.")
         else:
             graphs = graph.generate_graph(course_details)
             st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link})", unsafe_allow_html=True)
             st.image(graphs, use_column_width="auto", output_format="PNG")
-            st.write(f"Corequisites: {course_coreqs}")
+            if course_coreqs:
+                for coreq in course_coreqs:
+                    st.markdown(f"- {coreq}")
+            else:
+                st.info("No corequisites for this course.")
 
 def footer():
     st.markdown(
