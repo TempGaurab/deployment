@@ -110,7 +110,7 @@ def course_selector():
         st.session_state['selected_course']
     )
 
-def buttons():
+def buttons(selected_catalog):
     col1, col2 = st.columns([8, 1])
     
     with col1:
@@ -187,8 +187,7 @@ def course_navigation():
     catalog_years = ["2023-2024", "2022-2023", "2021-2022", "2020-2021"]  # Add more years as needed
     selected_catalog = st.selectbox("Select Catalog Year", catalog_years, key="catalog_selector")
     course_selector()
-    st.write(selected_catalog)
-    buttons()
+    buttons(selected_catalog)
 
 def professor_recommendation():
     st.header("Professor Recommendation")

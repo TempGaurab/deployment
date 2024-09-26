@@ -71,7 +71,7 @@ def get_link(selected_course, data):
     return "Course Link not found"
 
 def get_all_courses():
-    with open('courses.json', 'r') as f:
+    with open('courses/courses.json', 'r') as f:
         data = json.load(f)
     return [course['Course_Code'] for course in data]
 
@@ -93,7 +93,7 @@ def final(selected_course):
     coreq = ""
     selected_course = selected_course.strip().upper()
     user_input = selected_course
-    with open('courses.json', 'r') as f:
+    with open('courses/courses.json', 'r') as f:
         data = json.load(f)
     # Validate input
     if course_code_exists(user_input, data):
