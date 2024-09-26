@@ -80,10 +80,17 @@ def is_course_in_system(course_code):
     all_courses = get_all_courses()  # You'll need to implement this function to return all course codes
     return course_code.upper() in all_courses
 
+def get_coreq(selected_course, data):
+    for course in data:
+        if course['Course_Code'] == selected_course:
+            return course['Coreq']
+    return ""
 def final(selected_course):
+
     title = ""
     link = ""
     output = ""
+    coreq = ""
     selected_course = selected_course.strip().upper()
     user_input = selected_course
     with open('courses.json', 'r') as f:
@@ -93,6 +100,7 @@ def final(selected_course):
         title = get_title(user_input,data)
         link = get_link(user_input,data)
         output = format_prerequisites(main(user_input, data))
-        return title,link,output
+        coreq = get_coreq(user_input,data)
+        return title,link,output,coreq
     else:
         return("Course code not found. Please enter a valid course code.")
