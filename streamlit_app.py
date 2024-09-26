@@ -129,9 +129,10 @@ def display_results(selected_catalog):
     course_link = st.session_state['course_link']
     course_details = st.session_state['course_details']
     course_coreqs = st.session_state['course_coreqs']
+    hours = st.session_state['hours']
 
     display_course_info(course_title, course_link, selected_catalog)
-
+    st.write("This course is taught in: ", hours)
     if course_details and all(len(prereqs) == 0 for prereqs in course_details.values()):
         st.write("This course needs no prerequisites.")
     else:
@@ -154,13 +155,14 @@ def buttons(selected_catalog):
             if st.session_state.get('selected_course', None):
                 if algorithm.is_course_in_system(st.session_state['selected_course'], selected_catalog):
                     # Perform the course processing and save results in session state
-                    course_title, course_link, course_details, course_coreqs = algorithm.final(st.session_state['selected_course'], selected_catalog)
+                    course_title, course_link, course_details, course_coreqs, hours = algorithm.final(st.session_state['selected_course'], selected_catalog)
                     
                     # Store results in session state
                     st.session_state['course_title'] = course_title
                     st.session_state['course_link'] = course_link
                     st.session_state['course_details'] = course_details
                     st.session_state['course_coreqs'] = course_coreqs
+                    st.session_state['hours'] = hours
     
                     # Set show_results to True to display results
                     st.session_state['show_results'] = True

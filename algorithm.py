@@ -64,6 +64,13 @@ def get_title(selected_course, data):
             return course['Course_Title']
     return "Course title not found"
 
+
+def get_hours(selected_course, data):
+    for course in data:
+        if course['Course_Code'] == selected_course:
+            return course['Hours']
+    return "Not Specified"
+
 def get_link(selected_course, data):
     for course in data:
         if course['Course_Code'] == selected_course:
@@ -90,6 +97,7 @@ def final(selected_course, selected_catalog):
     link = ""
     output = ""
     coreq = ""
+    hours = ""
     selected_course = selected_course.strip().upper()
     user_input = selected_course
     with open(f'courses/{selected_catalog}.json', 'r') as f:
@@ -100,6 +108,7 @@ def final(selected_course, selected_catalog):
         link = get_link(user_input,data)
         output = format_prerequisites(main(user_input, data))
         coreq = get_coreq(user_input,data)
-        return title,link,output,coreq
+        hours = get_hours(user_input,data)
+        return title,link,output,coreq,hours
     else:
         return("Course code not found. Please enter a valid course code.")
