@@ -220,7 +220,7 @@ def course_navigation():
     buttons(selected_catalog)
 
 def course_plan():
-    st.header("4 year course plan")
+    st.header("Course Plan")
     st.write("This feature is coming soon. Stay tuned!")
 
 def about_the_club():
@@ -328,13 +328,13 @@ def main():
     
     # Create a sidebar for navigation
     st.sidebar.title("Navigation")
-    page = st.sidebar.radio("Go to", ("Course Navigation", "4 year course plan", "About the Club"))
+    page = st.sidebar.radio("Go to", ("Course Navigation", "Course Plan", "About the Club"))
     
     header()
     
     if page == "Course Navigation":
         course_navigation()
-    elif page == "4 year course plan":
+    elif page == "Course Plan":
         course_plan()
     elif page == "About the Club":
         about_the_club()
