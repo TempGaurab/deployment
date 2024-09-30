@@ -156,7 +156,7 @@ def display_results(selected_catalog):
 
 def buttons(selected_catalog):
     col1, col2 = st.columns([8, 1])
-    
+    selected_catalog = selected_catalog.strip().upper()
     # Initialize session state if not already done
     if 'show_results' not in st.session_state:
         st.session_state['show_results'] = False
