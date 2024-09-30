@@ -111,7 +111,7 @@ def course_selector():
     )
 
 def display_course_info(course_title, course_link, selected_catalog):
-    st.markdown(f"### {st.session_state['selected_course'].upper()}: {course_title} | [Course Link]({course_link}) | Catalog Year: {selected_catalog}", unsafe_allow_html=True)
+    st.markdown(f"### {st.session_state['selected_course'].upper().strip()}: {course_title} | [Course Link]({course_link}) | Catalog Year: {selected_catalog}", unsafe_allow_html=True)
 
 def display_corequisites(course_coreqs):
     if course_coreqs:
