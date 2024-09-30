@@ -220,7 +220,7 @@ def course_navigation():
     buttons(selected_catalog)
 
 def professor_recommendation():
-    st.header("4 year course")
+    st.header("Professor Recommendation")
     st.write("This feature is coming soon. Stay tuned!")
 
 def about_the_club():
