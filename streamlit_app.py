@@ -311,6 +311,15 @@ def about_the_club():
             <span class="team-member-email">khanala1@nku.edu</span>
         </div>
         """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-name">Aalok Dhonju</span><br>
+            <span class="team-member-email">dhonjua1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
     
     st.markdown("---")
     st.markdown("### Join Us!")
