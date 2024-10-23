@@ -97,6 +97,7 @@ def header():
         '<div class="header">'
         '<h1>NKU Course Navigator</h1>'
         '<h3>Find and navigate your courses with ease</h3>'
+        '<h3>Always meet your Advisor before registering for classes! This doesnot provide accurate results</h3>'
         '</div>',
         unsafe_allow_html=True
     )
